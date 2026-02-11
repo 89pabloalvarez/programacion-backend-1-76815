@@ -8,5 +8,5 @@ export async function startupServer(BASEURL) {
     await sleep(500)
     console.log(`Iniciando en 1..`)
     await sleep(500)
-    console.log(`Servidor arriba en: ${BASEURL}`)
+    console.log(`Servidor iniciado en: ${BASEURL}`)
 }
