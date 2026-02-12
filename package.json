@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/89pabloalvarez/programacion-backend-1-76815#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "uuid": "^13.0.0"
   }
 }
