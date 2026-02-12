@@ -4,18 +4,18 @@
     "buyer": {
       "email": "89.pablo.alvarez@gmail.com",
       "lastName": "Baa",
-      "name": "PABLO"
+      "title": "PABLO"
     },
     "cart": [
       {
-        "id": 21,
-        "name": "Alfajor Rasta negro",
+        "id": "e1b23456-5678-40fa-9abc-1234567890fa",
+        "title": "Alfajor Rasta negro",
         "price": 2.49,
         "quantity": 5
       },
       {
-        "id": 40,
-        "name": "Pepitos unidad",
+        "id": "f0123456-8901-42de-8fab-3456789012de",
+        "title": "Pepitos unidad",
         "price": 9.99,
         "quantity": 1
       }
@@ -28,12 +28,12 @@
     "buyer": {
       "email": "maria.gomez@example.com",
       "lastName": "Gomez",
-      "name": "Maria"
+      "title": "Maria"
     },
     "cart": [
       {
-        "id": 5,
-        "name": "Flynn Paff surtido",
+        "id": "5b7e9c22-8f4a-4d2b-9c7e-1a3f6b9d8e44",
+        "title": "Flynn Paff surtido",
         "price": 3.99,
         "quantity": 10
       }
@@ -46,18 +46,18 @@
     "buyer": {
       "email": "juan.perez@example.com",
       "lastName": "Perez",
-      "name": "Juan"
+      "title": "Juan"
     },
     "cart": [
       {
-        "id": 1,
-        "name": "Yerba CBSé Guaraná 500g",
+        "id": "7c02ed6c-1ae6-402f-aed5-f36bf11b522e",
+        "title": "Yerba CBSé Guaraná 500g",
         "price": 15.99,
         "quantity": 2
       },
       {
-        "id": 22,
-        "name": "Coca-Cola 1.75L",
+        "id": "f2c34567-6789-41ab-8bcd-2345678901ab",
+        "title": "Coca-Cola 1.75L",
         "price": 8.99,
         "quantity": 1
       }
@@ -70,12 +70,12 @@
     "buyer": {
       "email": "sofia.lopez@example.com",
       "lastName": "Lopez",
-      "name": "Sofia"
+      "title": "Sofia"
     },
     "cart": [
       {
-        "id": 12,
-        "name": "Chocolate Águila clásico",
+        "id": "b2e3f4a5-6789-41bc-8def-2345678901bc",
+        "title": "Chocolate Águila clásico",
         "price": 8.49,
         "quantity": 3
       }
@@ -88,12 +88,12 @@
     "buyer": {
       "email": "carlos.martinez@example.com",
       "lastName": "Martinez",
-      "name": "Carlos"
+      "title": "Carlos"
     },
     "cart": [
       {
-        "id": 7,
-        "name": "Cerveza Brahma lata 473ml",
+        "id": "3c9e7b66-2d4a-4f8b-9a1e-7b2c5d8f9a66",
+        "title": "Cerveza Brahma lata 473ml",
         "price": 6.49,
         "quantity": 6
       }
@@ -106,18 +106,18 @@
     "buyer": {
       "email": "laura.fernandez@example.com",
       "lastName": "Fernandez",
-      "name": "Laura"
+      "title": "Laura"
     },
     "cart": [
       {
-        "id": 29,
-        "name": "Don Satur Bizcocho dulce",
+        "id": "f9012345-6789-40de-8fab-0123456789de",
+        "title": "Don Satur Bizcocho dulce",
         "price": 3.99,
         "quantity": 4
       },
       {
-        "id": 30,
-        "name": "Don Satur Bizcocho negrito",
+        "id": "a0123456-7890-41ef-9abc-1234567890ef",
+        "title": "Don Satur Bizcocho negrito",
         "price": 3.99,
         "quantity": 2
       }
@@ -130,12 +130,12 @@
     "buyer": {
       "email": "martin.silva@example.com",
       "lastName": "Silva",
-      "name": "Martin"
+      "title": "Martin"
     },
     "cart": [
       {
-        "id": 35,
-        "name": "Oreo Golden (pack x3)",
+        "id": "f5678901-2345-46de-8fab-6789012345de",
+        "title": "Oreo Golden (pack x3)",
         "price": 29.99,
         "quantity": 1
       }
@@ -148,12 +148,12 @@
     "buyer": {
       "email": "valentina.ruiz@example.com",
       "lastName": "Ruiz",
-      "name": "Valentina"
+      "title": "Valentina"
     },
     "cart": [
       {
-        "id": 19,
-        "name": "Alfajor Jorgito negro",
+        "id": "c9f01234-3456-48cd-9efa-9012345678cd",
+        "title": "Alfajor Jorgito negro",
         "price": 2.99,
         "quantity": 12
       }
@@ -166,18 +166,18 @@
     "buyer": {
       "email": "diego.torres@example.com",
       "lastName": "Torres",
-      "name": "Diego"
+      "title": "Diego"
     },
     "cart": [
       {
-        "id": 26,
-        "name": "Pepsi 1.5L",
+        "id": "c6d7e8f9-3456-47ab-9cde-7890123456ab",
+        "title": "Pepsi 1.5L",
         "price": 7.99,
         "quantity": 2
       },
       {
-        "id": 24,
-        "name": "Coca-Cola 500ml",
+        "id": "a4b5c6d7-1234-45ef-9abc-5678901234ef",
+        "title": "Coca-Cola 500ml",
         "price": 4.99,
         "quantity": 3
       }
@@ -190,65 +190,23 @@
     "buyer": {
       "email": "camila.mendez@example.com",
       "lastName": "Mendez",
-      "name": "Camila"
+      "title": "Camila"
     },
     "cart": [
       {
-        "id": 13,
-        "name": "Chocolate Block con leche",
+        "id": "c3f4a5b6-7890-42cd-9efa-3456789012cd",
+        "title": "Chocolate Block con leche",
         "price": 7.99,
         "quantity": 2
       },
       {
-        "id": 14,
-        "name": "Chocolate Shot relleno con maní",
+        "id": "d4a5b6c7-8901-43de-8fab-4567890123de",
+        "title": "Chocolate Shot relleno con maní",
         "price": 6.99,
         "quantity": 1
       }
     ],
     "date": "2025-03-03T19:00:00.000Z",
     "totalAmountWithTaxes": "$22,97"
-  },
-  {
-    "id": "11yZ7a123bcDe2Fg3H4Ij",
-    "buyer": {
-      "email": "sebastian.rojas@example.com",
-      "lastName": "Rojas",
-      "name": "Sebastian"
-    },
-    "cart": [
-      {
-        "id": 33,
-        "name": "Don Satur Magdalenas vainilla y dulce de leche",
-        "price": 5.99,
-        "quantity": 2
-      }
-    ],
-    "date": "2025-02-15T10:10:10.000Z",
-    "totalAmountWithTaxes": "$11,98"
-  },
-  {
-    "id": "12zA8b456deFg3Hi4J5Kl",
-    "buyer": {
-      "email": "florencia.castro@example.com",
-      "lastName": "Castro",
-      "name": "Florencia"
-    },
-    "cart": [
-      {
-        "id": 38,
-        "name": "Oreo clásica unidad",
-        "price": 10.99,
-        "quantity": 2
-      },
-      {
-        "id": 39,
-        "name": "Pepitos (pack x3)",
-        "price": 27.99,
-        "quantity": 1
-      }
-    ],
-    "date": "2025-01-20T22:45:00.000Z",
-    "totalAmountWithTaxes": "$49,97"
   }
 ]
