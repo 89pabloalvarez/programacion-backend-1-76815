@@ -1,11 +1,8 @@
 import app from './config/app.js'
 import { CONSTANTS as CONST } from './utils/constants/constants.js'
 import { startupServer } from './utils/functions/functions.js'
-import CartsServices from './services/carts/cartsServices.js'
+import { cartsManager } from './services/carts/cartsServices.js'
 import { productManager } from './services/products/productsServices.js'
-
-//const productManager = new ProductsServices()
-const cartsManager = new CartsServices()
 
 //PRODUCTS
 
@@ -61,6 +58,8 @@ app.delete(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
         res.status(404).json({ error: err.message })
     }
 })
+
+//CARTS
 
 app.listen(CONST.PORT, () => {
     startupServer(CONST.BASEURL)
