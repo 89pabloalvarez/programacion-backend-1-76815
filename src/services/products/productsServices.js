@@ -27,38 +27,65 @@ class ProductManager {
         return product
     }
 
-    create(body) {
-        const pid = uuidv4();
-        const product = {
-            id: pid,
-            code: pid.replace(/-/g, ""),
-            status: true,
-            ...body
-        }
-        const isBodyValid = validateFields(product, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
-        if (isBodyValid.objectValid) {
-            const products = this.getAll()
-            products.push(product)
-            fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
-            if (isBodyValid.fieldsInvalid.length > 0) {
-                return {
-                    message: `Producto creado satisfactoriamente!!!; Los campos: ${isBodyValid.fieldsInvalid.join(", ")} están de más.`,
-                    product
-                }
-            }
-            return {
-                message: "Producto creado correctamente.",
-                product
-            }
-        } else {
-            throw new Error(
-                `Error al crear el producto :(. Te faltan los campos: ${isBodyValid.fieldsEmpty.join(", ")}.`
-                + (isBodyValid.fieldsInvalid.length > 0
-                    ? ` Y además me mandaste campos: ${isBodyValid.fieldsInvalid.join(", ")} que están de más.`
-                    : "")
-            )
+create(body) {
+    const pid = uuidv4()
+    const newProduct = {
+        id: pid,
+        code: pid.replace(/-/g, ""),
+        status: true,
+        ...body
+    }
+    const isBodyValid = validateFields(newProduct, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
+    const filteredProduct = {}
+    for (const key of CONST.PRODUCT_CREATE_ALLOWED_FIELDS) {
+        if (newProduct.hasOwnProperty(key)) {
+            filteredProduct[key] = newProduct[key]
         }
     }
+    if (isBodyValid.objectValid) {
+        const products = this.getAll()
+        products.push(filteredProduct)
+        fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+        if (isBodyValid.fieldsInvalid.length > 0) {
+            let customMsg = ''
+            if (isBodyValid.fieldsInvalid.length == 1){
+                customMsg = `El campo: '${isBodyValid.fieldsInvalid}' está de más.`
+            } else {
+                customMsg = `Los campos: ${isBodyValid.fieldsInvalid.map(field => `'${field}'`).join(", ")} están de más.`
+            }
+            return {
+                success: true,
+                message: 'Producto creado satisfactoriamente!!!; ' + customMsg,
+                product: filteredProduct
+            }
+        }
+        return {
+            success: true,
+            message: "Producto creado satisfactoriamente!!!",
+            product: filteredProduct
+        }
+    } else {
+        let customMsg2 = ''
+        if (isBodyValid.fieldsMissing.length == 1){
+            customMsg2 = `Te falta el campo: '${isBodyValid.fieldsMissing}'.`
+        } else {
+            customMsg2 = `Te faltan los campos: ${isBodyValid.fieldsMissing.map(field => `'${field}'`).join(", ")}.`
+        }
+        if (isBodyValid.fieldsInvalid.length == 1){
+            customMsg2 = customMsg2 + `A demás, el campo: '${isBodyValid.fieldsInvalid}' está de más.`
+        } else if (isBodyValid.fieldsInvalid.length > 1){
+            customMsg2 = customMsg2 +`A demás, los campos: ${isBodyValid.fieldsInvalid.map(field => `'${field}'`).join(", ")} están de más.`
+        }
+        return {
+            success: false,
+            message: customMsg2,
+            errors: {
+                fieldsMissing: isBodyValid.fieldsMissing,
+                fieldsInvalid: isBodyValid.fieldsInvalid
+            }
+        }
+    }
+}
 
     update(id, prodEdited) {
         const products = this.getAll()

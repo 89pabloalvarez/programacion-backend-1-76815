@@ -39,7 +39,14 @@ app.get(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
 //////////////////////////////////////////////////////////////////
 ///////NOTA: id, code y status se crean automáticamente///////////
 //////////////////////////////////////////////////////////////////
-app.post(CONST.DIR_URL_PRODUCTS, (req, res) => res.json(productManager.create(req.body)))
+app.post(CONST.DIR_URL_PRODUCTS, (req, res) => {
+  const result = productManager.create(req.body)
+  if (result.success) {
+    res.status(201).json(result)
+  } else {
+    res.status(400).json(result)
+  }
+})
 
 //Actualizar un producto obtenido por su ID.
 app.put(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {

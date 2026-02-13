@@ -14,7 +14,7 @@ export async function startupServer(BASEURL) {
 export function validateFields(objeto, allowedFields) {
     const result = {
         objectValid: true,
-        fieldsEmpty: [],
+        fieldsMissing: [],
         fieldsInvalid: []
     }
     for (const key in objeto) {
@@ -24,10 +24,10 @@ export function validateFields(objeto, allowedFields) {
     }
     for (const field of allowedFields) {
         if (!objeto.hasOwnProperty(field)) {
-            result.fieldsEmpty.push(field)
+            result.fieldsMissing.push(field)
         }
     }
-    if (result.fieldsEmpty.length > 0) {
+    if (result.fieldsMissing.length > 0) {
         result.objectValid = false
     }
     return result
