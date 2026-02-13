@@ -34,10 +34,11 @@ app.post(CONST.DIR_URL_PRODUCTS, (req, res) => {
 
 //Actualizar un producto obtenido por su ID.
 app.put(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
-    try {
-        res.json(productManager.update(req.params.id, req.body))
-    } catch (err) {
-        res.status(404).json({ error: err.message })
+    const result = productManager.update(req.params.id, req.body)
+    if (result.success) {
+        res.status(201).json(result)
+    } else {
+        res.status(400).json(result)
     }
 })
 
