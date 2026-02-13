@@ -25,5 +25,16 @@ export const CONSTANTS = {
         "stock",
         "code",
         "status"
-    ]
+    ],
+    PRODUCT_FIELDS_SCHEMA: {
+        id: "string",
+        title: "string",
+        price: "number",
+        category: "string",
+        thumbnails: "array:string",
+        description: "string",
+        stock: "integer",
+        code: "string",
+        status: "boolean"
+    }
 }

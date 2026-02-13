@@ -35,7 +35,11 @@ create(body) {
         status: true,
         ...body
     }
-    const isBodyValid = validateFields(newProduct, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
+    const isBodyValid = validateFields(
+        newProduct,
+        CONST.PRODUCT_CREATE_ALLOWED_FIELDS,
+        CONST.PRODUCT_FIELDS_SCHEMA
+    )
     const filteredProduct = {}
     for (const key of CONST.PRODUCT_CREATE_ALLOWED_FIELDS) {
         if (newProduct.hasOwnProperty(key)) {
@@ -66,22 +70,32 @@ create(body) {
         }
     } else {
         let customMsg2 = ''
-        if (isBodyValid.fieldsMissing.length == 1){
-            customMsg2 = `Te falta el campo: '${isBodyValid.fieldsMissing}'.`
-        } else {
-            customMsg2 = `Te faltan los campos: ${isBodyValid.fieldsMissing.map(field => `'${field}'`).join(", ")}.`
+        if (isBodyValid.fieldsMissing.length === 1) {
+            customMsg2 = `Te falta el campo: '${isBodyValid.fieldsMissing[0]}'.`
+        } else if (isBodyValid.fieldsMissing.length > 1) {
+            customMsg2 = `Te faltan los campos: ${isBodyValid.fieldsMissing.map(f => `'${f}'`).join(", ")}.`
         }
-        if (isBodyValid.fieldsInvalid.length == 1){
-            customMsg2 = customMsg2 + `A demás, el campo: '${isBodyValid.fieldsInvalid}' está de más.`
-        } else if (isBodyValid.fieldsInvalid.length > 1){
-            customMsg2 = customMsg2 +`A demás, los campos: ${isBodyValid.fieldsInvalid.map(field => `'${field}'`).join(", ")} están de más.`
+        if (isBodyValid.fieldsInvalid.length === 1) {
+            customMsg2 += ` Además, el campo: '${isBodyValid.fieldsInvalid[0]}' está de más.`
+        } else if (isBodyValid.fieldsInvalid.length > 1) {
+            customMsg2 += ` Además, los campos: ${isBodyValid.fieldsInvalid.map(f => `'${f}'`).join(", ")} están de más.`
         }
+        if (isBodyValid.fieldsTypeError.length === 1) {
+            const field = isBodyValid.fieldsTypeError[0]
+            customMsg2 += ` El campo: '${field}' tiene formato incorrecto, debería ser de tipo '${CONST.PRODUCT_FIELDS_SCHEMA[field]}'.`
+        } else if (isBodyValid.fieldsTypeError.length > 1) {
+            const fields = isBodyValid.fieldsTypeError.map(f => `'${f}'`).join(", ")
+            customMsg2 += ` Los campos: ${fields} tienen un formato incorrecto.`
+            customMsg2 += " Tipos esperados: " + isBodyValid.fieldsTypeError.map(f => `'${f}': ${CONST.PRODUCT_FIELDS_SCHEMA[f]}`).join(", ")
+        }
+
         return {
             success: false,
             message: customMsg2,
             errors: {
                 fieldsMissing: isBodyValid.fieldsMissing,
-                fieldsInvalid: isBodyValid.fieldsInvalid
+                fieldsInvalid: isBodyValid.fieldsInvalid,
+                fieldsTypeError: isBodyValid.fieldsTypeError
             }
         }
     }

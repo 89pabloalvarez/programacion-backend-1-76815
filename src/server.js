@@ -23,22 +23,6 @@ app.get(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
 })
 
 //Crear un nuevo producto.
-//////////////////////////////////////////////////////////////////
-//////////////////////////BODY EXAMPLE////////////////////////////
-//////////////////////////////////////////////////////////////////
-
-//{
-//    "title": "Product Name",(string)
-//    "price": 55.55,(number)
-//    "category": "Varios",(string)
-//    "thumbnails": ["https://i.postimg.cc/XXXXXX/product-name.png"],(array of strings)
-//    "description": "Product Description",(string)
-//    "stock": 30 (number)
-//}
-
-//////////////////////////////////////////////////////////////////
-///////NOTA: id, code y status se crean automáticamente///////////
-//////////////////////////////////////////////////////////////////
 app.post(CONST.DIR_URL_PRODUCTS, (req, res) => {
   const result = productManager.create(req.body)
   if (result.success) {
