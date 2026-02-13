@@ -35,7 +35,7 @@ class ProductManager {
             status: true,
             ...body
         }
-        const isBodyValid = validateFields(body, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
+        const isBodyValid = validateFields(product, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
         if (isBodyValid.objectValid) {
             const products = this.getAll()
             products.push(product)
