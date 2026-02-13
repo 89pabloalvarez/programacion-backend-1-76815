@@ -47,7 +47,11 @@ app.delete(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
     try {
         res.json(productManager.delete(req.params.id))
     } catch (err) {
-        res.status(404).json({ error: err.message })
+        if (err.details) {
+            res.status(404).json(err.details)
+        } else {
+            res.status(404).json({ error: err.message })
+        }
     }
 })
 

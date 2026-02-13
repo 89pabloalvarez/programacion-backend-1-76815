@@ -178,11 +178,25 @@ class ProductManager {
     delete(id) {
         const products = this.getAll()
         const index = products.findIndex(p => p.id === id)
-        if (index === -1) throw new Error(`Error al eliminar el producto. ${CONST.PRODUCT_NOT_FOUND}`)
-        const deleted = products[index]
+        if (index === -1) {
+            const err = new Error(CONST.PRODUCT_NOT_FOUND)
+            err.details = {
+                success: false,
+                searchedProduct: id,
+                message: 'No se pudo eliminar el producto.',
+                reason: CONST.PRODUCT_NOT_FOUND
+            }
+            throw err
+        }
+        const productDeleted = products[index]
         products.splice(index, 1)
         fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
-        return deleted
+        return {
+            success: true,
+            searchedProduct: id,
+            message: 'Producto eliminado correctamente!!!',
+            deletedProduct: productDeleted
+        }
     }
 }
 
