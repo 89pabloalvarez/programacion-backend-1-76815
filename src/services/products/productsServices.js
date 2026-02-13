@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { v4 as uuidv4 } from 'uuid'
 import { CONSTANTS as CONST } from '../../utils/constants/constants.js'
+import { validateFields } from '../../utils/functions/functions.js'
 
 class ProductManager {
     constructor(path) {
@@ -27,24 +28,49 @@ class ProductManager {
     }
 
     create(body) {
-        const pid = uuidv4()
+        const pid = uuidv4();
         const product = {
             id: pid,
             code: pid.replace(/-/g, ""),
             status: true,
             ...body
         }
-        const products = this.getAll()
-        products.push(product)
-        fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
-        return product
+        const isBodyValid = validateFields(body, CONST.PRODUCT_CREATE_ALLOWED_FIELDS)
+        if (isBodyValid.objectValid) {
+            const products = this.getAll()
+            products.push(product)
+            fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+            if (isBodyValid.fieldsInvalid.length > 0) {
+                return {
+                    message: `Producto creado satisfactoriamente!!!; Los campos: ${isBodyValid.fieldsInvalid.join(", ")} están de más.`,
+                    product
+                }
+            }
+            return {
+                message: "Producto creado correctamente.",
+                product
+            }
+        } else {
+            throw new Error(
+                `Error al crear el producto :(. Te faltan los campos: ${isBodyValid.fieldsEmpty.join(", ")}.`
+                + (isBodyValid.fieldsInvalid.length > 0
+                    ? ` Y además me mandaste campos: ${isBodyValid.fieldsInvalid.join(", ")} que están de más.`
+                    : "")
+            )
+        }
     }
 
-    update(id, updated) {
+    update(id, prodEdited) {
         const products = this.getAll()
         const index = products.findIndex(p => p.id === id)
-        if (index === -1) throw new Error(CONST.PRODUCT_NOT_FOUND)
-        products[index] = { ...products[index], ...updated };
+        if (index === -1) throw new Error(`Error al editar el producto. ${CONST.PRODUCT_NOT_FOUND}`)
+          const safeUpdate = {};
+        for (const key of CONST.PRODUCT_EDIT_ALLOWED_FIELDS) {
+            if (prodEdited.hasOwnProperty(key)) {
+            safeUpdate[key] = prodEdited[key];
+            }
+        }
+        products[index] = { ...products[index], ...prodEdited };
         fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
         return products[index]
     }
@@ -52,7 +78,7 @@ class ProductManager {
     delete(id) {
         const products = this.getAll()
         const index = products.findIndex(p => p.id === id)
-        if (index === -1) throw new Error(CONST.PRODUCT_NOT_FOUND)
+        if (index === -1) throw new Error(`Error al eliminar el producto. ${CONST.PRODUCT_NOT_FOUND}`)
         const deleted = products[index]
         products.splice(index, 1)
         fs.writeFileSync(this.path, JSON.stringify(products, null, 2))

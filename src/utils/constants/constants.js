@@ -4,5 +4,26 @@ export const CONSTANTS = {
     DIR_URL_PRODUCTS: '/api/products',
     DIR_URL_CARTS: '/api/carts',
     PRODUCT_NOT_FOUND: 'Producto no encontrado.',
-    PURCHASE_NOT_FOUND: 'Compra no encontrada.'
+    PURCHASE_NOT_FOUND: 'Compra no encontrada.',
+    PRODUCT_CREATE_ALLOWED_FIELDS: [
+        "id",
+        "title",
+        "price",
+        "category",
+        "thumbnails",
+        "description",
+        "stock",
+        "code",
+        "status"
+    ],
+    PRODUCT_EDIT_ALLOWED_FIELDS: [
+        "title",
+        "price",
+        "category",
+        "thumbnails",
+        "description",
+        "stock",
+        "code",
+        "status"
+    ]
 }

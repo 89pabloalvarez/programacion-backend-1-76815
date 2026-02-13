@@ -10,3 +10,25 @@ export async function startupServer(BASEURL) {
     await sleep(500)
     console.log(`Servidor iniciado en: ${BASEURL}`)
 }
+
+export function validateFields(objeto, allowedFields) {
+    const result = {
+        objectValid: true,
+        fieldsEmpty: [],
+        fieldsInvalid: []
+    }
+    for (const key in objeto) {
+        if (!allowedFields.includes(key)) {
+            result.fieldsInvalid.push(key)
+        }
+    }
+    for (const field of allowedFields) {
+        if (!objeto.hasOwnProperty(field)) {
+            result.fieldsEmpty.push(field)
+        }
+    }
+    if (result.fieldsEmpty.length > 0) {
+        result.objectValid = false
+    }
+    return result
+}
