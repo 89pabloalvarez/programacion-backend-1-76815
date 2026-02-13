@@ -1,0 +1,614 @@
+{
+  "info": {
+    "_postman_id": "efde8f23-3fd7-4bf3-aee9-d1a23ddd7593",
+    "name": "backend-1-76815",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3256458"
+  },
+  "item": [
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "badURL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllProducts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getProductById (OK)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getProductById (NOK producto no encontrado)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/999999999999999999999999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "999999999999999999999999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (OK)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (OK 1 campo de más)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"campoDeMas\": \"como es? mondiola o bondiola? mondiola o bondiola??\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (OK 2 campos de más)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"campoDeMas\": \"como es? mondiola o bondiola? mondiola o bondiola??\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"otroCampoDeMas\": \"torta de ricota\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (NOK falta 1 campo)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (NOK faltan 2 campos)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (NOK falta 1 campo y hay 2 campos de más)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"campoDeMas\": \"Cómo se dice tengolpor o telgopor? Tergonpor o tegolpor? me esta volviendo loco!!\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"otroCampoDeMas\": \"torta de ricota\",\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (NOK formato de 2 campos incorrectos)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": \"https://fake-dir.com/fake-pic.png\",\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"price\": \"50\",\r\n    \"stock\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createProduct (NOK falta 1 campo, hay 2 campos de más y el formato de 2 campos son incorrectos)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"campoDeMas\": \"Cómo se dice tengolpor o telgopor? Tergonpor o tegolpor? me esta volviendo loco!!\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"otroCampoDeMas\": \"torta de ricota\",\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": \"10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (OK)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (OK 1 campo de más)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (OK 2 campos de más)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"otroCampoDeMas\": \"como es? mondiola o bondiola? mondiola o bondiola??\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"unCampoDeMas\": \"torta de ricota\",\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (NOK falta 1 campo)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": \"Varios\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (NOK faltan 2 campos)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (NOK falta 1 campo y hay 2 campos de más)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"category\": \"Varios\",\r\n    \"otroCampoDeMas\": \"como es? mondiola o bondiola? mondiola o bondiola??\",\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"unCampoDeMas\": \"torta de ricota\",\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (NOK formato de 2 campos incorrectos)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"aaaaaaaaaaaa\",\r\n    \"price\": 55.55,\r\n    \"category\": 10,\r\n    \"thumbnails\": [\"https://fake-dir.com/fake-pic.png\", \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"code\": \"185eedc29d684dde9be457e56b5a35f2\",\r\n    \"status\": \"false\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateProduct (NOK falta 1 campo, hay 2 campos de más y el formato de 2 campos son incorrectos)",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"category\": \"Varios\",\r\n    \"price\": 55.55,\r\n    \"otroCampoDeMas\": \"como es? mondiola o bondiola? mondiola o bondiola??\",\r\n    \"thumbnails\": [false, \"https://fake-dir.com/fake-pic2.png\"],\r\n    \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"stock\": 10,\r\n    \"unCampoDeMas\": \"torta de ricota\",\r\n    \"code\": 65,\r\n    \"status\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/185eedc2-9d68-4dde-9be4-57e56b5a35f2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "185eedc2-9d68-4dde-9be4-57e56b5a35f2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteProductById (OK)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/7c02ed6c-1ae6-402f-aed5-f36bf11b522e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "7c02ed6c-1ae6-402f-aed5-f36bf11b522e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteProductById (NOK producto no encontrado)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/0a9f1484-8d67-425f-a657-89716fe6a7c6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "0a9f1484-8d67-425f-a657-89716fe6a7c6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "carts",
+      "item": []
+    }
+  ]
+}

@@ -10,3 +10,57 @@ export async function startupServer(BASEURL) {
     await sleep(500)
     console.log(`Servidor iniciado en: ${BASEURL}`)
 }
+
+export function validateFields(objeto, allowedFields, schemaFields) {
+    const result = {
+        objectValid: true,
+        fieldsMissing: [],
+        fieldsInvalid: [],
+        fieldsTypeError: []
+    }
+    for (const key in objeto) {
+        if (!allowedFields.includes(key)) {
+            result.fieldsInvalid.push(key)
+        }
+    }
+    for (const field of allowedFields) {
+        if (objeto.hasOwnProperty(field)) {
+            const expectedType = schemaFields[field]
+            const value = objeto[field]
+
+            switch (expectedType) {
+                case "string":
+                    if (typeof value !== "string") {
+                        result.fieldsTypeError.push(field)
+                    }
+                    break
+                case "number":
+                    if (typeof value !== "number") {
+                        result.fieldsTypeError.push(field)
+                    }
+                    break
+                case "integer":
+                    if (typeof value !== "number" || !Number.isInteger(value)) {
+                        result.fieldsTypeError.push(field)
+                    }
+                    break
+                case "boolean":
+                    if (typeof value !== "boolean") {
+                        result.fieldsTypeError.push(field)
+                    }
+                    break
+                case "array:string":
+                    if (!Array.isArray(value) || !value.every(v => typeof v === "string")) { //Aca hay magia!! Recorro el array y encima dentro valido que sea un string cada
+                        result.fieldsTypeError.push(field)
+                    }
+                    break
+            }
+        } else {
+            result.fieldsMissing.push(field);
+        }
+    }
+    if (result.fieldsMissing.length > 0 || result.fieldsTypeError.length > 0) {
+        result.objectValid = false;
+    }
+    return result
+}
