@@ -38,7 +38,7 @@ app.post(CONST.DIR_URL_PRODUCTS, (req, res) => {
 app.put(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
     const result = productManager.update(req.params.id, req.body)
     if (result.success) {
-        res.status(201).json(result)
+        res.status(200).json(result)
     } else {
         res.status(400).json(result)
     }
@@ -63,7 +63,12 @@ app.delete(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
 
 // Crear un nuevo carrito
 app.post(CONST.DIR_URL_CARTS, (req, res) => {
-    res.status(201).json({ message: "Carrito creado (estructura)" })
+    const result = cartsManager.create(req.body)
+    if (result.success) {
+        res.status(201).json(result)
+    } else {
+        res.status(400).json(result)
+    }
 })
 
 // Listar los productos de un carrito por su cid
