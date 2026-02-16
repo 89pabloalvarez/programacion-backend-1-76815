@@ -1,212 +1,30 @@
 [
   {
-    "id": "1cX3p989plTr1Ki6J6Hm",
-    "buyer": {
-      "email": "89.pablo.alvarez@gmail.com",
-      "lastName": "Baa",
-      "title": "PABLO"
-    },
-    "cart": [
+    "id": "3d3e3c03-be26-4c23-b38a-b12985c6bcce",
+    "products": [
       {
-        "id": "e1b23456-5678-40fa-9abc-1234567890fa",
+        "productId": "e1b23456-5678-40fa-9abc-1234567890fa",
         "title": "Alfajor Rasta negro",
         "price": 2.49,
         "quantity": 5
       },
       {
-        "id": "f0123456-8901-42de-8fab-3456789012de",
+        "productId": "f0123456-8901-42de-8fab-3456789012de",
         "title": "Pepitos unidad",
         "price": 9.99,
         "quantity": 1
       }
-    ],
-    "date": "2025-12-13T14:21:42.631Z",
-    "totalAmountWithTaxes": "$27,15"
+    ]
   },
   {
-    "id": "2aB7k123xyZp9Lm4Q8Rt",
-    "buyer": {
-      "email": "maria.gomez@example.com",
-      "lastName": "Gomez",
-      "title": "Maria"
-    },
-    "cart": [
+    "id": "6e7537af-0384-41b2-84b9-484b9959ad45",
+    "products": [
       {
-        "id": "5b7e9c22-8f4a-4d2b-9c7e-1a3f6b9d8e44",
+        "productId": "5b7e9c22-8f4a-4d2b-9c7e-1a3f6b9d8e44",
         "title": "Flynn Paff surtido",
         "price": 3.99,
         "quantity": 10
       }
-    ],
-    "date": "2025-11-02T09:15:22.000Z",
-    "totalAmountWithTaxes": "$39,90"
-  },
-  {
-    "id": "3kL9p456mnOp7Qr2T6Uv",
-    "buyer": {
-      "email": "juan.perez@example.com",
-      "lastName": "Perez",
-      "title": "Juan"
-    },
-    "cart": [
-      {
-        "id": "7c02ed6c-1ae6-402f-aed5-f36bf11b522e",
-        "title": "Yerba CBSé Guaraná 500g",
-        "price": 15.99,
-        "quantity": 2
-      },
-      {
-        "id": "f2c34567-6789-41ab-8bcd-2345678901ab",
-        "title": "Coca-Cola 1.75L",
-        "price": 8.99,
-        "quantity": 1
-      }
-    ],
-    "date": "2025-10-21T18:45:10.000Z",
-    "totalAmountWithTaxes": "$40,97"
-  },
-  {
-    "id": "4dE2f789ghIj5Kl8M0Wx",
-    "buyer": {
-      "email": "sofia.lopez@example.com",
-      "lastName": "Lopez",
-      "title": "Sofia"
-    },
-    "cart": [
-      {
-        "id": "b2e3f4a5-6789-41bc-8def-2345678901bc",
-        "title": "Chocolate Águila clásico",
-        "price": 8.49,
-        "quantity": 3
-      }
-    ],
-    "date": "2025-09-05T12:30:00.000Z",
-    "totalAmountWithTaxes": "$25,47"
-  },
-  {
-    "id": "5hJ3g234uvWx9Yz1N2Op",
-    "buyer": {
-      "email": "carlos.martinez@example.com",
-      "lastName": "Martinez",
-      "title": "Carlos"
-    },
-    "cart": [
-      {
-        "id": "3c9e7b66-2d4a-4f8b-9a1e-7b2c5d8f9a66",
-        "title": "Cerveza Brahma lata 473ml",
-        "price": 6.49,
-        "quantity": 6
-      }
-    ],
-    "date": "2025-08-11T20:10:45.000Z",
-    "totalAmountWithTaxes": "$38,94"
-  },
-  {
-    "id": "6nP8q567rsTu4Vw3X5Yz",
-    "buyer": {
-      "email": "laura.fernandez@example.com",
-      "lastName": "Fernandez",
-      "title": "Laura"
-    },
-    "cart": [
-      {
-        "id": "f9012345-6789-40de-8fab-0123456789de",
-        "title": "Don Satur Bizcocho dulce",
-        "price": 3.99,
-        "quantity": 4
-      },
-      {
-        "id": "a0123456-7890-41ef-9abc-1234567890ef",
-        "title": "Don Satur Bizcocho negrito",
-        "price": 3.99,
-        "quantity": 2
-      }
-    ],
-    "date": "2025-07-19T16:05:33.000Z",
-    "totalAmountWithTaxes": "$23,94"
-  },
-  {
-    "id": "7qR1s890tuVw5Xy6Z7Ab",
-    "buyer": {
-      "email": "martin.silva@example.com",
-      "lastName": "Silva",
-      "title": "Martin"
-    },
-    "cart": [
-      {
-        "id": "f5678901-2345-46de-8fab-6789012345de",
-        "title": "Oreo Golden (pack x3)",
-        "price": 29.99,
-        "quantity": 1
-      }
-    ],
-    "date": "2025-06-25T11:22:18.000Z",
-    "totalAmountWithTaxes": "$29,99"
-  },
-  {
-    "id": "8sT4u123vwXy6Za7B8Cd",
-    "buyer": {
-      "email": "valentina.ruiz@example.com",
-      "lastName": "Ruiz",
-      "title": "Valentina"
-    },
-    "cart": [
-      {
-        "id": "c9f01234-3456-48cd-9efa-9012345678cd",
-        "title": "Alfajor Jorgito negro",
-        "price": 2.99,
-        "quantity": 12
-      }
-    ],
-    "date": "2025-05-14T08:40:00.000Z",
-    "totalAmountWithTaxes": "$35,88"
-  },
-  {
-    "id": "9uV5w456xyZa8Bc9D0Ef",
-    "buyer": {
-      "email": "diego.torres@example.com",
-      "lastName": "Torres",
-      "title": "Diego"
-    },
-    "cart": [
-      {
-        "id": "c6d7e8f9-3456-47ab-9cde-7890123456ab",
-        "title": "Pepsi 1.5L",
-        "price": 7.99,
-        "quantity": 2
-      },
-      {
-        "id": "a4b5c6d7-1234-45ef-9abc-5678901234ef",
-        "title": "Coca-Cola 500ml",
-        "price": 4.99,
-        "quantity": 3
-      }
-    ],
-    "date": "2025-04-09T14:55:12.000Z",
-    "totalAmountWithTaxes": "$31,95"
-  },
-  {
-    "id": "10wX6y789zaBc0De1F2Gh",
-    "buyer": {
-      "email": "camila.mendez@example.com",
-      "lastName": "Mendez",
-      "title": "Camila"
-    },
-    "cart": [
-      {
-        "id": "c3f4a5b6-7890-42cd-9efa-3456789012cd",
-        "title": "Chocolate Block con leche",
-        "price": 7.99,
-        "quantity": 2
-      },
-      {
-        "id": "d4a5b6c7-8901-43de-8fab-4567890123de",
-        "title": "Chocolate Shot relleno con maní",
-        "price": 6.99,
-        "quantity": 1
-      }
-    ],
-    "date": "2025-03-03T19:00:00.000Z",
-    "totalAmountWithTaxes": "$22,97"
+    ]
   }
 ]

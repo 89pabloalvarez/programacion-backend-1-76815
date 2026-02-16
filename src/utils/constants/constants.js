@@ -36,5 +36,13 @@ export const CONSTANTS = {
         stock: "integer",
         code: "string",
         status: "boolean"
+    },
+    CART_CREATE_ALLOWED_FIELDS: [
+        "productId",
+        "quantity"
+    ],
+    CART_FIELDS_SCHEMA: {
+        productId: "string",
+        quantity: "number"
     }
 }

@@ -1,7 +1,5 @@
-import fs from 'fs'
-import { v4 as uuidv4 } from 'uuid'
 import { CONSTANTS as CONST } from '../../utils/constants/constants.js'
-import { validateFields } from '../../utils/functions/functions.js'
+import { readJSON, writeJSON, generateId, validateFields } from '../../utils/functions/functions.js'
 
 class ProductManager {
     constructor(path) {
@@ -9,11 +7,7 @@ class ProductManager {
     }
 
     getAll() {
-        if (fs.existsSync(this.path)) {
-            const productsFile = fs.readFileSync(this.path, 'utf-8')
-            return JSON.parse(productsFile)
-        }
-        return []
+        return readJSON(this.path)
     }
 
     getById(id) {
@@ -28,7 +22,7 @@ class ProductManager {
     }
 
     create(body) {
-        const pid = uuidv4()
+        const pid = generateId()
         const newProduct = {
             id: pid,
             code: pid.replace(/-/g, ""),
@@ -49,7 +43,7 @@ class ProductManager {
         if (isBodyValid.objectValid) {
             const products = this.getAll()
             products.push(filteredProduct)
-            fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+            writeJSON(this.path, products)
             if (isBodyValid.fieldsInvalid.length > 0) {
                 let customMsg = ''
                 if (isBodyValid.fieldsInvalid.length == 1){
@@ -124,7 +118,7 @@ class ProductManager {
         }
         if (isBodyValid.objectValid) {
             products[index] = { ...products[index], ...safeUpdate };
-            fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+            writeJSON(this.path, products)
             if (isBodyValid.fieldsInvalid.length > 0) {
                 let customMsg = ''
                 if (isBodyValid.fieldsInvalid.length === 1) {
@@ -190,7 +184,7 @@ class ProductManager {
         }
         const productDeleted = products[index]
         products.splice(index, 1)
-        fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+        writeJSON(this.path, products)
         return {
             success: true,
             searchedProduct: id,
