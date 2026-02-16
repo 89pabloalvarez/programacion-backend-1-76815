@@ -1,0 +1,528 @@
+[
+  {
+    "id": "7c02ed6c-1ae6-402f-aed5-f36bf11b522e",
+    "title": "Yerba CBSé Guaraná 500g",
+    "price": 15.99,
+    "category": "Varios",
+    "thumbnails": [
+      "https://i.postimg.cc/ygxpdtyQ/yerba-cbse-guarana-500g-removebg-preview.png"
+    ],
+    "description": "Yerba mate sabor guaraná, paquete de 500g.",
+    "stock": 25,
+    "code": "7c02ed6c1ae6402faed5f36bf11b522e",
+    "status": true
+  },
+  {
+    "id": "c9a4f2e1-7d3b-4d8a-9f2b-1f4a6e2d9a11",
+    "title": "Yerba CBSé Hierbas Serranas 1kg",
+    "price": 19.99,
+    "category": "Varios",
+    "thumbnails": [
+      "https://i.postimg.cc/CB5r1Xs4/yerba-cbse-hierbas-serranas-1kg-removebg-preview.png"
+    ],
+    "description": "Yerba con mezcla de hierbas serranas, paquete de 1kg.",
+    "stock": 20,
+    "code": "c9a4f2e17d3b4d8a9f2b1f4a6e2d9a11",
+    "status": true
+  },
+  {
+    "id": "7f3b2c44-1a9d-4e6f-8b2d-3c7f9d2a5b22",
+    "title": "Yerba Payadito 1kg",
+    "price": 18.49,
+    "category": "Varios",
+    "thumbnails": [
+      "https://i.postimg.cc/0MjXQF07/yerba-payadito-1kg-removebg-preview.png",
+      "https://i.postimg.cc/ygxpdtyQ/yerba-cbse-guarana-500g-removebg-preview.png"
+    ],
+    "description": "Yerba tradicional Payadito, paquete de 1kg.",
+    "stock": 30,
+    "code": "7f3b2c441a9d4e6f8b2d3c7f9d2a5b22",
+    "status": true
+  },
+  {
+    "id": "2d8f1a77-5c3e-4b9a-9d1f-8e2c4a7b6c33",
+    "title": "Yerba Payadito 500g",
+    "price": 10.99,
+    "category": "Varios",
+    "thumbnails": [
+      "https://i.postimg.cc/TyCHTfgk/yerba-payadito-500g-removebg-preview.png"
+    ],
+    "description": "Yerba tradicional Payadito, paquete de 500g.",
+    "stock": 35,
+    "code": "2d8f1a775c3e4b9a9d1f8e2c4a7b6c33",
+    "status": true
+  },
+  {
+    "id": "5b7e9c22-8f4a-4d2b-9c7e-1a3f6b9d8e44",
+    "title": "Flynn Paff surtido",
+    "price": 3.99,
+    "category": "Caramelos",
+    "thumbnails": [
+      "https://i.postimg.cc/H87S0MKn/flynn-paff-removebg-preview.png"
+    ],
+    "description": "Caramelos Flynn Paff de varios sabores.",
+    "stock": 100,
+    "code": "5b7e9c228f4a4d2b9c7e1a3f6b9d8e44",
+    "status": true
+  },
+  {
+    "id": "8a2f3d55-9c1e-4b7a-8d2f-5e6a9c3b7d55",
+    "title": "Sugus surtidos",
+    "price": 4.49,
+    "category": "Caramelos",
+    "thumbnails": [
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Caramelos masticables Sugus surtidos.",
+    "stock": 120,
+    "code": "8a2f3d559c1e4b7a8d2f5e6a9c3b7d55",
+    "status": true
+  },
+  {
+    "id": "3c9e7b66-2d4a-4f8b-9a1e-7b2c5d8f9a66",
+    "title": "Cerveza Brahma lata 473ml",
+    "price": 6.49,
+    "category": "Bebidas Con Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/GBc50H88/brahma-lata-removebg-preview.png"
+    ],
+    "description": "Cerveza Brahma en lata de 473ml.",
+    "stock": 40,
+    "code": "3c9e7b662d4a4f8b9a1e7b2c5d8f9a66",
+    "status": true
+  },
+  {
+    "id": "6d1f8a77-4c2e-4b9a-8d1f-9e2c3a7b6d77",
+    "title": "Cerveza Corona botella 330ml",
+    "price": 7.99,
+    "category": "Bebidas Con Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/HJphGVcx/corona-removebg-preview.png"
+    ],
+    "description": "Cerveza Corona en botella de 330ml.",
+    "stock": 35,
+    "code": "6d1f8a774c2e4b9a8d1f9e2c3a7b6d77",
+    "status": true
+  },
+  {
+    "id": "9e3b2c88-5d1f-4a7b-9c2e-8f6a1d9b7c88",
+    "title": "Cerveza Quilmes lata 473ml",
+    "price": 6.29,
+    "category": "Bebidas Con Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/nsHP8CjX/quilmes-lata-removebg-preview.png"
+    ],
+    "description": "Cerveza Quilmes en lata de 473ml.",
+    "stock": 50,
+    "code": "9e3b2c885d1f4a7b9c2e8f6a1d9b7c88",
+    "status": true
+  },
+  {
+    "id": "1a7f9d22-3c8e-4b6a-9d2f-7e5a9c3b8d22",
+    "title": "Cerveza Stella Artois botella 330ml",
+    "price": 8.49,
+    "category": "Bebidas Con Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/HJphGVJF/stella-artois-removebg-preview.png"
+    ],
+    "description": "Cerveza Stella Artois en botella de 330ml.",
+    "stock": 30,
+    "code": "1a7f9d223c8e4b6a9d2f7e5a9c3b8d22",
+    "status": true
+  },
+  {
+    "id": "a1f2c3d4-5678-49ab-9cde-1234567890ab",
+    "title": "Chocolate Águila 80% cacao",
+    "price": 9.99,
+    "category": "Chocolates",
+    "thumbnails": [
+      "https://i.postimg.cc/JD0Ynv52/aguila-80-cacao-removebg-preview.png"
+    ],
+    "description": "Chocolate Águila con 80% de cacao, ideal para repostería.",
+    "stock": 30,
+    "code": "a1f2c3d4567849ab9cde1234567890ab",
+    "status": true
+  },
+  {
+    "id": "b2e3f4a5-6789-41bc-8def-2345678901bc",
+    "title": "Chocolate Águila clásico",
+    "price": 8.49,
+    "category": "Chocolates",
+    "thumbnails": [
+      "https://i.postimg.cc/zbv2B6F6/aguila-removebg-preview.png"
+    ],
+    "description": "Chocolate Águila clásico semiamargo.",
+    "stock": 40,
+    "code": "b2e3f4a5678941bc8def2345678901bc",
+    "status": true
+  },
+  {
+    "id": "c3f4a5b6-7890-42cd-9efa-3456789012cd",
+    "title": "Chocolate Block con leche",
+    "price": 7.99,
+    "category": "Chocolates",
+    "thumbnails": [
+      "https://i.postimg.cc/gXjtJQHM/block-removebg-preview.png"
+    ],
+    "description": "Chocolate Block con leche, tableta grande.",
+    "stock": 45,
+    "code": "c3f4a5b6789042cd9efa3456789012cd",
+    "status": true
+  },
+  {
+    "id": "d4a5b6c7-8901-43de-8fab-4567890123de",
+    "title": "Chocolate Shot relleno con maní",
+    "price": 6.99,
+    "category": "Chocolates",
+    "thumbnails": [
+      "https://i.postimg.cc/G8tg2Vxz/shot-removebg-preview.png",
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Chocolate Shot relleno con pasta de maní.",
+    "stock": 50,
+    "code": "d4a5b6c7890143de8fab4567890123de",
+    "status": false
+  },
+  {
+    "id": "e5b6c7d8-9012-44ef-9abc-5678901234ef",
+    "title": "Alfajor Guaymallén blanco",
+    "price": 2.49,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/0M4WJntJ/guaymallen-blanco-removebg-preview.png"
+    ],
+    "description": "Alfajor Guaymallén con cobertura blanca.",
+    "stock": 60,
+    "code": "e5b6c7d8901244ef9abc5678901234ef",
+    "status": true
+  },
+  {
+    "id": "f6c7d8e9-0123-45fa-8bcd-6789012345fa",
+    "title": "Alfajor Guaymallén negro",
+    "price": 2.49,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/k6H1tsjR/guaymallen-negro-removebg-preview.png"
+    ],
+    "description": "Alfajor Guaymallén con cobertura negra.",
+    "stock": 60,
+    "code": "f6c7d8e9012345fa8bcd6789012345fa",
+    "status": true
+  },
+  {
+    "id": "a7d8e9f0-1234-46ab-9cde-7890123456ab",
+    "title": "Alfajor Jorgito blanco",
+    "price": 2.99,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/34qSD1L4/jorgito-blanco-removebg-preview.png",
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Alfajor Jorgito con cobertura blanca.",
+    "stock": 55,
+    "code": "a7d8e9f0123446ab9cde7890123456ab",
+    "status": true
+  },
+  {
+    "id": "b8e9f001-2345-47bc-8def-8901234567bc",
+    "title": "Pack Jorgito negro x6",
+    "price": 14.99,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/cgz98hD6/jorgito-negro-pack-6-removebg-preview.png"
+    ],
+    "description": "Pack de 6 alfajores Jorgito negros.",
+    "stock": 25,
+    "code": "b8e9f001234547bc8def8901234567bc",
+    "status": false
+  },
+  {
+    "id": "c9f01234-3456-48cd-9efa-9012345678cd",
+    "title": "Alfajor Jorgito negro",
+    "price": 2.99,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/ygGQSjfD/jorgito-negro-removebg-preview.png"
+    ],
+    "description": "Alfajor Jorgito con cobertura negra.",
+    "stock": 55,
+    "code": "c9f01234345648cd9efa9012345678cd",
+    "status": true
+  },
+  {
+    "id": "d0a12345-4567-49de-8fab-0123456789de",
+    "title": "Alfajor Rasta blanco",
+    "price": 2.49,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/hzYy7sCj/rasta-blanco-removebg-preview.png"
+    ],
+    "description": "Alfajor Rasta con cobertura blanca.",
+    "stock": 50,
+    "code": "d0a12345456749de8fab0123456789de",
+    "status": true
+  },
+  {
+    "id": "e1b23456-5678-40fa-9abc-1234567890fa",
+    "title": "Alfajor Rasta negro",
+    "price": 2.49,
+    "category": "Alfajores",
+    "thumbnails": [
+      "https://i.postimg.cc/8JYKr4yc/rasta-negro-removebg-preview.png"
+    ],
+    "description": "Alfajor Rasta con cobertura negra.",
+    "stock": 50,
+    "code": "e1b23456567840fa9abc1234567890fa",
+    "status": true
+  },
+  {
+    "id": "f2c34567-6789-41ab-8bcd-2345678901ab",
+    "title": "Coca-Cola 1.75L",
+    "price": 8.99,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/mc86TBC8/coca-1-75l-removebg-preview.png"
+    ],
+    "description": "Botella de Coca-Cola de 1.75 litros.",
+    "stock": 50,
+    "code": "f2c34567678941ab8bcd2345678901ab",
+    "status": true
+  },
+  {
+    "id": "a3d45678-7890-42bc-9cde-3456789012bc",
+    "title": "Coca-Cola 2.25L",
+    "price": 9.99,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/t12m9pWh/coca-2-25l-removebg-preview.png"
+    ],
+    "description": "Botella de Coca-Cola de 2.25 litros.",
+    "stock": 45,
+    "code": "a3d45678789042bc9cde3456789012bc",
+    "status": false
+  },
+  {
+    "id": "a4b5c6d7-1234-45ef-9abc-5678901234ef",
+    "title": "Coca-Cola 500ml",
+    "price": 4.99,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/mc86TBCF/coca-500ml-removebg-preview.png"
+    ],
+    "description": "Botella de Coca-Cola de 500ml.",
+    "stock": 60,
+    "code": "a4b5c6d7123445ef9abc5678901234ef",
+    "status": true
+  },
+  {
+    "id": "b5c6d7e8-2345-46fa-8bcd-6789012345fa",
+    "title": "Coca-Cola lata 354ml",
+    "price": 3.99,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/VSDHzmnR/coca-lata-354ml-removebg-preview.png"
+    ],
+    "description": "Lata de Coca-Cola de 354ml.",
+    "stock": 70,
+    "code": "b5c6d7e8234546fa8bcd6789012345fa",
+    "status": true
+  },
+  {
+    "id": "c6d7e8f9-3456-47ab-9cde-7890123456ab",
+    "title": "Pepsi 1.5L",
+    "price": 7.99,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/5HnkfbLx/pepsi-1-5l-removebg-preview.png"
+    ],
+    "description": "Botella de Pepsi de 1.5 litros.",
+    "stock": 40,
+    "code": "c6d7e8f9345647ab9cde7890123456ab",
+    "status": true
+  },
+  {
+    "id": "d7e8f901-4567-48bc-8def-8901234567bc",
+    "title": "Pepsi 3L",
+    "price": 10.49,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/VSDHzmnz/pepsi-3l-removebg-preview.png"
+    ],
+    "description": "Botella de Pepsi de 3 litros.",
+    "stock": 35,
+    "code": "d7e8f901456748bc8def8901234567bc",
+    "status": false
+  },
+  {
+    "id": "e8f90123-5678-49cd-9efa-9012345678cd",
+    "title": "Pepsi 500ml",
+    "price": 4.49,
+    "category": "Bebidas Sin Alcohol",
+    "thumbnails": [
+      "https://i.postimg.cc/94Wn3rRr/pepsi-500ml-removebg-preview.png"
+    ],
+    "description": "Botella de Pepsi de 500ml.",
+    "stock": 55,
+    "code": "e8f90123567849cd9efa9012345678cd",
+    "status": true
+  },
+  {
+    "id": "f9012345-6789-40de-8fab-0123456789de",
+    "title": "Don Satur Bizcocho dulce",
+    "price": 3.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/gX7S6sM2/don-satur-bizcocho-dulce-removebg-preview.png",
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Bizcochos dulces Don Satur, ideales para el mate.",
+    "stock": 35,
+    "code": "f9012345678940de8fab0123456789de",
+    "status": true
+  },
+  {
+    "id": "a0123456-7890-41ef-9abc-1234567890ef",
+    "title": "Don Satur Bizcocho negrito",
+    "price": 3.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/JDF6BxT7/don-satur-bizcocho-negrito-removebg-preview.png"
+    ],
+    "description": "Bizcochos sabor chocolate Don Satur.",
+    "stock": 30,
+    "code": "a0123456789041ef9abc1234567890ef",
+    "status": true
+  },
+  {
+    "id": "b1234567-8901-42fa-8bcd-2345678901fa",
+    "title": "Don Satur Bizcocho salado",
+    "price": 3.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/CB2Pf7vY/don-satur-bizcocho-salado-removebg-preview.png"
+    ],
+    "description": "Bizcochos salados Don Satur, perfectos para picadas.",
+    "stock": 40,
+    "code": "b1234567890142fa8bcd2345678901fa",
+    "status": true
+  },
+  {
+    "id": "c2345678-9012-43ab-9cde-3456789012ab",
+    "title": "Don Satur Magdalenas chocolate y dulce de leche",
+    "price": 5.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/XGPHyL2W/don-satur-magdalenas-chocolate-con-dulce-de-leche-removebg-preview.png"
+    ],
+    "description": "Magdalenas sabor chocolate rellenas con dulce de leche.",
+    "stock": 25,
+    "code": "c2345678901243ab9cde3456789012ab",
+    "status": false
+  },
+  {
+    "id": "d3456789-0123-44bc-8def-4567890123bc",
+    "title": "Don Satur Magdalenas vainilla y dulce de leche",
+    "price": 5.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/Pp738y6s/don-satur-magdalenas-vainilla-con-dulce-de-leche-removebg-preview.png"
+    ],
+    "description": "Magdalenas sabor vainilla rellenas con dulce de leche.",
+    "stock": 25,
+    "code": "d3456789012344bc8def4567890123bc",
+    "status": true
+  },
+  {
+    "id": "e4567890-1234-45cd-9efa-5678901234cd",
+    "title": "Don Satur Pepas",
+    "price": 4.49,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/hzYy7s2H/don-satur-pepas-removebg-preview.png"
+    ],
+    "description": "Pepas clásicas con dulce de membrillo.",
+    "stock": 45,
+    "code": "e4567890123445cd9efa5678901234cd",
+    "status": true
+  },
+  {
+    "id": "f5678901-2345-46de-8fab-6789012345de",
+    "title": "Oreo Golden (pack x3)",
+    "price": 29.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/cgCkH2c0/oreo-golden-pack-3-removebg-preview.png",
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Pack de 3 Oreo doradas.",
+    "stock": 20,
+    "code": "f5678901234546de8fab6789012345de",
+    "status": true
+  },
+  {
+    "id": "a6789012-3456-47ef-9abc-7890123456ef",
+    "title": "Oreo Golden unidad",
+    "price": 10.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/cgCkH2cd/oreo-golden-removebg-preview.png"
+    ],
+    "description": "Oreo dorada individual.",
+    "stock": 30,
+    "code": "a6789012345647ef9abc7890123456ef",
+    "status": true
+  },
+  {
+    "id": "c7890123-5678-49ab-9cde-9012345678ab",
+    "title": "Oreo clásica (pack x3)",
+    "price": 29.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/JD0YnvQ8/oreo-pack-3-removebg-preview.png"
+    ],
+    "description": "Pack de 3 Oreo clásicas.",
+    "stock": 20,
+    "code": "c7890123567849ab9cde9012345678ab",
+    "status": true
+  },
+  {
+    "id": "d8901234-6789-40bc-8def-1234567890bc",
+    "title": "Oreo clásica unidad",
+    "price": 10.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/phSGnCs7/oreo-removebg-preview.png"
+    ],
+    "description": "Oreo clásica individual.",
+    "stock": 30,
+    "code": "d8901234678940bc8def1234567890bc",
+    "status": false
+  },
+  {
+    "id": "e9012345-7890-41cd-9efa-2345678901cd",
+    "title": "Pepitos (pack x3)",
+    "price": 27.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/JD0YnvQw/pepitos-pack-3-removebg-preview.png"
+    ],
+    "description": "Pack de 3 galletitas Pepitos con chips de chocolate.",
+    "stock": 25,
+    "code": "e9012345789041cd9efa2345678901cd",
+    "status": true
+  },
+  {
+    "id": "f0123456-8901-42de-8fab-3456789012de",
+    "title": "Pepitos unidad",
+    "price": 9.99,
+    "category": "Galletitas",
+    "thumbnails": [
+      "https://i.postimg.cc/62qb3ghX/pepitos-removebg-preview.png",
+      "https://i.postimg.cc/cgz98hDY/sugus-removebg-preview.png"
+    ],
+    "description": "Galletita Pepitos con chips de chocolate.",
+    "stock": 35,
+    "code": "f0123456890142de8fab3456789012de",
+    "status": true
+  }
+]

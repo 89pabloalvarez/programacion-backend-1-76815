@@ -1,0 +1,30 @@
+[
+  {
+    "id": "3d3e3c03-be26-4c23-b38a-b12985c6bcce",
+    "products": [
+      {
+        "productId": "e1b23456-5678-40fa-9abc-1234567890fa",
+        "title": "Alfajor Rasta negro",
+        "price": 2.49,
+        "quantity": 5
+      },
+      {
+        "productId": "f0123456-8901-42de-8fab-3456789012de",
+        "title": "Pepitos unidad",
+        "price": 9.99,
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "id": "6e7537af-0384-41b2-84b9-484b9959ad45",
+    "products": [
+      {
+        "productId": "5b7e9c22-8f4a-4d2b-9c7e-1a3f6b9d8e44",
+        "title": "Flynn Paff surtido",
+        "price": 3.99,
+        "quantity": 10
+      }
+    ]
+  }
+]
