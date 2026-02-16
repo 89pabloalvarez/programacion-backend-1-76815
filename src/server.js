@@ -28,7 +28,7 @@ app.get(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
 app.post(CONST.DIR_URL_PRODUCTS, (req, res) => {
   const result = productManager.create(req.body)
   if (result.success) {
-    res.status(201).json(result)
+    res.status(200).json(result)
   } else {
     res.status(400).json(result)
   }
