@@ -1,6 +1,5 @@
-import fs from 'fs'
-import { v4 as uuidv4 } from 'uuid'
 import { CONSTANTS as CONST } from '../../utils/constants/constants.js'
+import { readJSON, writeJSON, generateId, validateFields } from '../../utils/functions/functions.js'
 
 class CartsManager {
     constructor(path) {
