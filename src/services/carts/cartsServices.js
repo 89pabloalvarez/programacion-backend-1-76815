@@ -112,12 +112,52 @@ class CartsManager {
         }
     }
 
-    addProductToCart(cid, pid) {
-        const productToAdd = { product: pid, quantity: 1 }
+    addProductToCart(cid, pid, body) {
+        const carts = readJSON(this.path)
+        const cartIndex = carts.findIndex(c => c.id === cid)
+        if (cartIndex === -1) {
+            const err = new Error(CONST.PURCHASE_NOT_FOUND)
+            err.details = {
+                success: false,
+                searchedCart: cid,
+                message: CONST.PURCHASE_NOT_FOUND
+            }
+            throw err
+        }
+        const { quantity } = body
+        if (!Number.isInteger(quantity) || quantity <= 0) {
+            return {
+                success: false,
+                message: `Cantidad inválida para el producto ${pid}. Debe ser un entero mayor a 0.`
+            }
+        }
+        let product
+        try {
+            product = productManager.getById(pid)
+        } catch (err) {
+            return {
+                success: false,
+                message: `Producto con id ${pid} no encontrado.`,
+                error: err.details || err.message
+            }
+        }
+        const cart = carts[cartIndex]
+        const existingProductIndex = cart.products.findIndex(p => p.productId === pid)
+        if (existingProductIndex === -1) {
+            cart.products.push({
+                productId: product.id,
+                title: product.title,
+                price: product.price,
+                quantity: quantity
+            })
+        } else {
+            cart.products[existingProductIndex].quantity += quantity
+        }
+        writeJSON(this.path, carts)
         return {
             success: true,
             message: `Producto ${pid} agregado al carrito ${cid}`,
-            addedProduct: productToAdd
+            cart: cart
         }
     }
 }

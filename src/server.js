@@ -87,7 +87,20 @@ app.get(`${CONST.DIR_URL_CARTS}/:id`, (req, res) => {
 
 // Agregar un producto al carrito seleccionado.
 app.post(`${CONST.DIR_URL_CARTS}/:cid/product/:pid`, (req, res) => {
-    res.status(201).json({ message: `Producto ${req.params.pid} agregado al carrito ${req.params.cid} (estructura)` })
+    try {
+        const result = cartsManager.addProductToCart(req.params.cid, req.params.pid, req.body)
+        if (result.success) {
+            res.status(200).json(result)
+        } else {
+            res.status(400).json(result)
+        }
+    } catch (err) {
+        if (err.details) {
+            res.status(404).json(err.details)
+        } else {
+            res.status(404).json({ error: err.message })
+        }
+    }
 })
 
 app.listen(CONST.PORT, () => {

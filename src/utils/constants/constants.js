@@ -41,9 +41,6 @@ export const CONSTANTS = {
         "productId",
         "quantity"
     ],
-    CART_EDIT_ALLOWED_FIELDS: [
-        "quantity"
-    ],
     CART_FIELDS_SCHEMA: {
         productId: "string",
         quantity: "number"
