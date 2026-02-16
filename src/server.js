@@ -4,7 +4,9 @@ import { startupServer } from './utils/functions/functions.js'
 import { cartsManager } from './services/carts/cartsServices.js'
 import { productManager } from './services/products/productsServices.js'
 
-//PRODUCTS
+//////////////////////////////////////////////////////////////
+///////////////////////////PRODUCTS///////////////////////////
+//////////////////////////////////////////////////////////////
 
 //Obtener todos los productos.
 app.get(CONST.DIR_URL_PRODUCTS, (req, res) => res.json(productManager.getAll()))
@@ -55,7 +57,24 @@ app.delete(`${CONST.DIR_URL_PRODUCTS}/:id`, (req, res) => {
     }
 })
 
-//CARTS
+//////////////////////////////////////////////////////////////
+/////////////////////////CARTS////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+// Crear un nuevo carrito
+app.post(CONST.DIR_URL_CARTS, (req, res) => {
+    res.status(201).json({ message: "Carrito creado (estructura)" })
+})
+
+// Listar los productos de un carrito por su cid
+app.get(`${CONST.DIR_URL_CARTS}/:id`, (req, res) => {
+    res.json({ message: `Productos del carrito ${req.params.id} (estructura)` })
+})
+
+// Agregar un producto al carrito seleccionado.
+app.post(`${CONST.DIR_URL_CARTS}/:cid/product/:pid`, (req, res) => {
+    res.status(201).json({ message: `Producto ${req.params.pid} agregado al carrito ${req.params.cid} (estructura)` })
+})
 
 app.listen(CONST.PORT, () => {
     startupServer(CONST.BASEURL)
