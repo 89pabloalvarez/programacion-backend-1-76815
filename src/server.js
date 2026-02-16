@@ -71,9 +71,18 @@ app.post(CONST.DIR_URL_CARTS, (req, res) => {
     }
 })
 
-// Listar los productos de un carrito por su cid
+// Listar los productos de un carrito por su id
 app.get(`${CONST.DIR_URL_CARTS}/:id`, (req, res) => {
-    res.json({ message: `Productos del carrito ${req.params.id} (estructura)` })
+    try {
+        const result = cartsManager.getProductsByCartId(req.params.id)
+        res.status(200).json(result)
+    } catch (err) {
+        if (err.details) {
+            res.status(404).json(err.details)
+        } else {
+            res.status(404).json({ error: err.message })
+        }
+    }
 })
 
 // Agregar un producto al carrito seleccionado.

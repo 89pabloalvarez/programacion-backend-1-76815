@@ -94,10 +94,21 @@ class CartsManager {
     }
 
     getProductsByCartId(id) {
+        const carts = readJSON(this.path)
+        const cart = carts.find(c => c.id === id)
+        if (!cart) {
+            const err = new Error(CONST.PURCHASE_NOT_FOUND)
+            err.details = {
+                success: false,
+                searchedCart: id,
+                message: CONST.PURCHASE_NOT_FOUND
+            }
+            throw err
+        }
         return {
             success: true,
             message: `Productos del carrito ${id}`,
-            products: []
+            products: cart.products.map(p => p.productId)
         }
     }
 
