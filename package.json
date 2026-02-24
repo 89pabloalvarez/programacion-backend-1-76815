@@ -20,6 +20,7 @@
   "homepage": "https://github.com/89pabloalvarez/programacion-backend-1-76815#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "multer": "^2.0.2",
     "uuid": "^13.0.0"
   }
 }
