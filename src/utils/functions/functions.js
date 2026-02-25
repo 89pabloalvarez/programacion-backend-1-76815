@@ -83,3 +83,16 @@ export function readJSON(path) {
 export function writeJSON(path, data) {
     fs.writeFileSync(path, JSON.stringify(data, null, 2))
 }
+
+export const unScapedJson = (escapedJson) => {
+  try {
+    if (typeof escapedJson !== 'string') {
+      throw new Error('El parámetro debe ser un String')
+    }
+    const parsed = JSON.parse(escapedJson)
+    return parsed
+  } catch (error) {
+    console.error('Error al des-escapar JSON:', error.message)
+    return null
+  }
+}
