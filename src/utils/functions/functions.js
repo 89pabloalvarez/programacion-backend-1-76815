@@ -84,7 +84,7 @@ export function writeJSON(path, data) {
     fs.writeFileSync(path, JSON.stringify(data, null, 2))
 }
 
-export const unScapedJson = (escapedJson) => {
+export const unEscapedJson = (escapedJson) => {
   try {
     if (typeof escapedJson !== 'string') {
       throw new Error('El parámetro debe ser un String')
