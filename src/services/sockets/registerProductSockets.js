@@ -1,22 +1,31 @@
-export default function registerProductSockets(io) {
-    let products = []
+import { productManager } from '../products/productsServices.js'
 
-    io.on("connection", (socket) => {
+export default function registerProductSockets(io) {
+
+    io.on('connection', (socket) => {
         console.log(`Usuario conectado: ${socket.id}`)
 
-        socket.emit("updateProducts", products)
+        socket.emit('updateProducts', productManager.getAll())
 
-        socket.on("addProduct", (newProduct) => {
-            products.push(newProduct)
-            io.emit("updateProducts", products)
+        socket.on('addProduct', (body) => {
+            const result = productManager.create(body)
+            if (result.success) {
+                io.emit('updateProducts', productManager.getAll())
+            } else {
+                socket.emit('error', result.message)
+            }
         })
 
-        socket.on("deleteProduct", (codeToDelete) => {
-            products = products.filter(p => p.code !== codeToDelete)
-            io.emit("updateProducts", products)
+        socket.on('deleteProduct', (productToDelete) => {
+            const result = productManager.delete(productToDelete)
+            if (result.success) {
+                io.emit('updateProducts', productManager.getAll())
+            } else {
+                socket.emit('error', result.message)
+            }
         })
 
-        socket.on("disconnect", () => {
+        socket.on('disconnect', () => {
             console.log(`Usuario desconectado: ${socket.id}`)
         })
 
