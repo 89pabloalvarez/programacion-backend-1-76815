@@ -10,7 +10,9 @@ app.use(express.static('src/public'))
 app.use(loggerRequest)
 app.use(loggerResponse)
 
-app.engine('handlebars', handlebars.engine())
+app.engine('handlebars', handlebars.engine({
+    partialsDir: 'src/views/partials'
+}))
 app.set('views', 'src/views')
 app.set('view engine', 'handlebars')
 

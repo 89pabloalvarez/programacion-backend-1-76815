@@ -1,9 +1,11 @@
 import { Router } from 'express'
+import { productManager } from '../services/products/productsServices.js'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    res.render('pages/home', { page_title: 'Inicio' })
+router.get("/", async (req, res) => {
+  const products = await productManager.getAll();
+  res.render('pages/home', { page_title: 'Inicio', products })
 })
 
 router.get('/realtimeproducts', (req, res) => {
