@@ -20,6 +20,9 @@
   "homepage": "https://github.com/89pabloalvarez/programacion-backend-1-76815#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "express-handlebars": "^8.0.6",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.3",
     "uuid": "^13.0.0"
   }
 }
