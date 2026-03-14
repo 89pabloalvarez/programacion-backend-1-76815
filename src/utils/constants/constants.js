@@ -1,8 +1,9 @@
 export const CONSTANTS = {
     PORT: 8080,
     BASEURL: `http://localhost:8080`,
-    DIR_URL_PRODUCTS: '/api/products',
-    DIR_URL_CARTS: '/api/carts',
+    DIR_URL_ROOT: '/api',
+    DIR_URL_PRODUCTS: '/products',
+    DIR_URL_CARTS: '/carts',
     PRODUCT_NOT_FOUND: 'Producto no encontrado.',
     PURCHASE_NOT_FOUND: 'Compra no encontrada.',
     PRODUCT_CREATE_ALLOWED_FIELDS: [
