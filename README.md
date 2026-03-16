@@ -6,7 +6,7 @@ Se cumple con las consignas de crear las rutas de "/" y "/realtimeproducts" para
 Se llamaron a los métodos ya existentes de los managers de products para actualizar el .json.  
 Siguiendo con el esquema que ya venia trabajando, modularicé la configuración para que sea un "server.js" limpio y las rutas quedaran alojadas a las clases que corresponden. 
 Se separaron los .css a la carpeta pública (si lo dejaba en las views, el browser no lo tomaba).  
-Se hizo una regresión de la collection de postman y se verifico que la api sigue funcionando igual, asi que el nuevo código no afecto a lo anterior. 
+Se hizo una regresión de la collection de postman y se verifico que la api sigue funcionando igual, asi que el nuevo código no afecto a lo anterior. Adhisionalmente se agregó una nueva carpeta a la collection para probar las vistas de "Home" y "RealTimeProducts".  
 
 ## Primera entrega:
 Ésta primera entrega del proyecto me llevó bastante esfuerzo, pero como consecuencia, también me llevo mucho conocimiento aprendido.  
