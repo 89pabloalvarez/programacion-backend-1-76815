@@ -5,11 +5,11 @@ export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 export async function startupServer(BASEURL) {
     await sleep(100)
-    console.log(`Iniciando en 3..`)
+    console.log(`Iniciando servidor en 3..`)
     await sleep(500)
-    console.log(`Iniciando en 2..`)
+    console.log(`Iniciando servidor en 2..`)
     await sleep(500)
-    console.log(`Iniciando en 1..`)
+    console.log(`Iniciando servidor en 1..`)
     await sleep(500)
     console.log(`Servidor iniciado en: ${BASEURL}`)
 }
