@@ -53,7 +53,7 @@ export function validateFields(objeto, allowedFields, schemaFields) {
                     }
                     break
                 case "array:string":
-                    if (!Array.isArray(value) || !value.every(v => typeof v === "string")) { //Aca hay magia!! Recorro el array y encima dentro valido que sea un string cada
+                    if (!Array.isArray(value) || !value.every(v => typeof v === "string")) { //Aca hay magia!! Recorro el array y encima dentro valido que sea un string.
                         result.fieldsTypeError.push(field)
                     }
                     break
