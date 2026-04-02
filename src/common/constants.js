@@ -7,15 +7,12 @@ export const CONSTANTS = {
     PRODUCT_NOT_FOUND: 'Producto no encontrado.',
     PURCHASE_NOT_FOUND: 'Compra no encontrada.',
     PRODUCT_CREATE_ALLOWED_FIELDS: [
-        "id",
         "title",
         "price",
         "category",
         "thumbnails",
         "description",
-        "stock",
-        "code",
-        "status"
+        "stock"
     ],
     PRODUCT_EDIT_ALLOWED_FIELDS: [
         "title",
@@ -24,18 +21,15 @@ export const CONSTANTS = {
         "thumbnails",
         "description",
         "stock",
-        "code",
         "status"
     ],
     PRODUCT_FIELDS_SCHEMA: {
-        id: "string",
         title: "string",
         price: "number",
         category: "string",
         thumbnails: "array:string",
         description: "string",
         stock: "integer",
-        code: "string",
         status: "boolean"
     },
     CART_CREATE_ALLOWED_FIELDS: [

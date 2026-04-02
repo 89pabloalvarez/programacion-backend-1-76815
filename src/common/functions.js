@@ -1,6 +1,3 @@
-import fs from 'fs'
-import { v4 as uuidv4 } from 'uuid'
-
 export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 export async function startupServer(BASEURL) {
@@ -66,22 +63,6 @@ export function validateFields(objeto, allowedFields, schemaFields) {
         result.objectValid = false;
     }
     return result
-}
-
-export function generateId() {
-    return uuidv4()
-}
-
-export function readJSON(path) {
-    if (fs.existsSync(path)) {
-        const fileData = fs.readFileSync(path, 'utf-8')
-        return JSON.parse(fileData)
-    }
-    return []
-}
-
-export function writeJSON(path, data) {
-    fs.writeFileSync(path, JSON.stringify(data, null, 2))
 }
 
 export const unEscapedJson = (escapedJson) => {
