@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { productManager } from '../services/products/productsServices.js'
+import { productsService } from '../services/products.js'
 
 const router = Router()
 
 router.get("/", async (req, res) => {
-  const products = await productManager.getAll();
+  const products = await productsService.getAll();
   res.render('pages/home', { page_title: 'Inicio', products })
 })
 

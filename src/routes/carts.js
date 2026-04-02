@@ -1,0 +1,18 @@
+import { Router } from 'express'
+import { cartsController } from '../controllers/carts.js'
+
+const router = Router()
+
+// Obtener todos los carritos.
+router.get('/', cartsController.getAll)
+
+// Obtener productos de un carrito por ID.
+router.get('/:id', cartsController.getById)
+
+// Crear un carrito.
+router.post('/', cartsController.create)
+
+// Agregar producto al carrito.
+router.post('/:cid/product/:pid', cartsController.addProduct)
+
+export default router
