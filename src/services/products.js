@@ -47,6 +47,7 @@ class ProductsService {
     return product
   }
 
+  // Crea un nuevo producto.
   async create(body) {
     const isBodyValid = validateFields(
       body,
@@ -72,7 +73,10 @@ class ProductsService {
     )
 
     if (!isBodyValid.objectValid) {
-      throw new Error('Validación fallida: ' + JSON.stringify(isBodyValid))
+      const err = new Error('Validación fallida')
+      err.statusCode = 400
+      err.details = isBodyValid
+      throw err
     }
 
     return await this.productsRepo.update(id, data)

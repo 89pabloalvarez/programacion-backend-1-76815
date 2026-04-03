@@ -27,7 +27,7 @@ class CartsController {
     }
   }
 
-  // Crear carrito
+  // Crea un nuevo carrito.
   create = async (req, res, next) => {
     try {
       const response = await this.service.create(req.body)

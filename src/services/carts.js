@@ -40,14 +40,12 @@ class CartsService {
       throw err
     }
     return cart
-    }
+  }
 
+  // Crea un nuevo carrito.
   async create(body) {
     if (!Array.isArray(body)) {
-      return {
-        success: false,
-        message: "El body debe ser un array de productos."
-      }
+      return { success: false, message: "El body debe ser un array de productos." }
     }
 
     const productsMap = {}
@@ -55,86 +53,40 @@ class CartsService {
     const errors = []
 
     for (const item of body) {
-      const isBodyValid = validateFields(
-        item,
-        CONST.CART_CREATE_ALLOWED_FIELDS,
-        CONST.CART_FIELDS_SCHEMA
-      )
-
-      if (isBodyValid.fieldsInvalid.length > 0) {
-        let msg = ''
-        if (isBodyValid.fieldsInvalid.length === 1) {
-          msg = `El campo '${isBodyValid.fieldsInvalid[0]}' estaba de más para el productoId '${item.productId}'.`
-        } else {
-          msg = `Los campos ${isBodyValid.fieldsInvalid.map(f => `'${f}'`).join(", ")} estaban de más para el productoId '${item.productId}'.`
-        }
-        extraFieldsMessages.push(msg)
+      // 1. Validar campos permitidos y tipos
+      const validationResult = this.validateCartItem(item)
+      if (validationResult.error) {
+        errors.push({ item, message: validationResult.error })
+        continue
+      }
+      if (validationResult.extraFieldsMsg) {
+        extraFieldsMessages.push(validationResult.extraFieldsMsg)
       }
 
-      if (!isBodyValid.objectValid) {
-        let customMsg = ''
-
-        if (isBodyValid.fieldsMissing.length > 0) {
-          customMsg += `Faltan campos: ${isBodyValid.fieldsMissing.map(f => `'${f}'`).join(", ")}. `
-        }
-
-        if (isBodyValid.fieldsTypeError.length > 0) {
-          customMsg += `Campos con tipo incorrecto: ${isBodyValid.fieldsTypeError.map(f => `'${f}'`).join(", ")}.`
-        }
-
-        errors.push({
-          item,
-          message: customMsg.trim()
-        })
+      // 2. Validar cantidad
+      const quantityError = this.validateQuantity(item)
+      if (quantityError) {
+        errors.push({ item, message: quantityError })
         continue
       }
 
-      const { productId, quantity } = item
-
-      if (!Number.isInteger(quantity) || quantity <= 0) {
-        errors.push({
-          item,
-          message: `Cantidad inválida para el producto ${productId}. Debe ser un entero mayor a 0.`
-        })
-        continue
-      }
-
-      const product = await this.productsRepo.getById(productId)
-
+      // 3. Verificar existencia del producto
+      const product = await this.productsRepo.getById(item.productId)
       if (!product) {
-        errors.push({
-          item,
-          message: `Producto con id ${productId} no encontrado.`
-        })
+        errors.push({ item, message: `Producto con id ${item.productId} no encontrado.` })
         continue
       }
 
-      if (!productsMap[productId]) {
-        productsMap[productId] = {
-          product: productId,
-          title: product.title,
-          price: product.price,
-          quantity
-        }
-      } else {
-        productsMap[productId].quantity += quantity
-      }
+      // 4. Construir o acumular producto en el carrito
+      this.addOrUpdateCartProduct(productsMap, product, item.quantity)
     }
 
     if (errors.length > 0) {
-      return {
-        success: false,
-        message: "Errores en la creación del carrito.",
-        errors
-      }
+      return { success: false, message: "Errores en la creación del carrito.", errors }
     }
 
-    const newCart = {
-      products: Object.values(productsMap)
-    }
-
+    const newCart = { products: Object.values(productsMap) }
     const createdCart = await this.cartsRepo.create(newCart)
-
 
     if (extraFieldsMessages.length > 0) {
       const populatedCart = await CartModel.findById(createdCart._id)
@@ -145,11 +97,7 @@ class CartsService {
       }
     }
 
-    return {
-      success: true,
-      message: "Carrito creado satisfactoriamente.",
-      cart: createdCart
-    }
+    return { success: true, message: "Carrito creado satisfactoriamente.", cart: createdCart }
   }
 
   async addProduct(cid, pid, quantity) {
@@ -198,6 +146,56 @@ class CartsService {
 
     return await this.cartsRepo.update(cid, cart)
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////FUNCIONES AUXILIARES////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  validateCartItem(item) {
+    const result = validateFields(item, CONST.CART_CREATE_ALLOWED_FIELDS, CONST.CART_FIELDS_SCHEMA)
+
+    if (!result.objectValid) {
+      let msg = ''
+      if (result.fieldsMissing.length > 0) {
+        msg += `Faltan campos: ${result.fieldsMissing.map(f => `'${f}'`).join(", ")}. `
+      }
+      if (result.fieldsTypeError.length > 0) {
+        msg += `Campos con tipo incorrecto: ${result.fieldsTypeError.map(f => `'${f}'`).join(", ")}.`
+      }
+      return { error: msg.trim() }
+    }
+
+    if (result.fieldsInvalid.length > 0) {
+      const msg = result.fieldsInvalid.length === 1
+        ? `El campo '${result.fieldsInvalid[0]}' estaba de más para el productoId '${item.productId}'.`
+        : `Los campos ${result.fieldsInvalid.map(f => `'${f}'`).join(", ")} estaban de más para el productoId '${item.productId}'.`
+      return { extraFieldsMsg: msg }
+    }
+
+    return {}
+  }
+
+  validateQuantity(item) {
+    const { productId, quantity } = item
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      return `Cantidad inválida para el producto ${productId}. Debe ser un entero mayor a 0.`
+    }
+    return null
+  }
+
+  addOrUpdateCartProduct(productsMap, product, quantity) {
+    if (!productsMap[product._id]) {
+      productsMap[product._id] = {
+        product: product._id,
+        title: product.title,
+        price: product.price,
+        quantity
+      }
+    } else {
+      productsMap[product._id].quantity += quantity
+    }
+  }
+
 }
 
 export const cartsService = new CartsService(

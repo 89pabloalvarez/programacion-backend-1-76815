@@ -19,7 +19,7 @@ class ProductsRepository {
     return await this.model.findById(id)
   }
 
-  // Crear un nuevo producto.
+  // Crea un nuevo producto.
   async create(data) {
     return await this.model.create(data)
   }

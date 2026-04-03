@@ -9,7 +9,7 @@ router.get('/', productsController.getAll)
 // Obtener producto por ID.
 router.get('/:id', productsController.getById)
 
-// Crear un producto.
+// Crea un nuevo producto.
 router.post('/', productsController.create)
 
 // Actualizar un producto.

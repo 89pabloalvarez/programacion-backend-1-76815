@@ -4,12 +4,20 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 const CartSchema = new Schema({
   products: [
     {
-      product: {
+      product: { 
         type: Schema.Types.ObjectId,
         ref: 'products',
         required: true
       },
-      quantity: {
+      title: { 
+        type: String,
+        required: true
+      },
+      price: { 
+        type: Number,
+        required: true
+      },
+      quantity: { 
         type: Number,
         required: true,
         default: 1

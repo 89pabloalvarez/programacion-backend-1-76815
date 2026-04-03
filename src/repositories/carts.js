@@ -15,7 +15,7 @@ class CartsRepository {
     return await this.model.findById(id)
   }
 
-  // Crear carrito.
+  // Crea un nuevo carrito.
   async create(cartData) {
     return await this.model.create(cartData)
   }

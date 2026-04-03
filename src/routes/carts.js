@@ -9,7 +9,7 @@ router.get('/', cartsController.getAll)
 // Obtener un carrito por ID.
 router.get('/:id', cartsController.getById)
 
-// Crear un carrito.
+// Crea un nuevo carrito.
 router.post('/', cartsController.create)
 
 // Agregar producto al carrito.
