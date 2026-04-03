@@ -1,12 +1,14 @@
 import { CONSTANTS as CONST } from '../common/constants.js'
 import { validateFields } from '../common/functions.js'
 import { productsRepository } from '../repositories/products.js'
+import mongoose from 'mongoose'
 
 class ProductsService {
   constructor(productsRepo) {
     this.productsRepo = productsRepo
   }
 
+  // Obtener todos los productos.
   async getAll({ limit = 10, page = 1, sort, query }) {
     const filter = query ? { category: query } : {}
     const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
@@ -19,10 +21,18 @@ class ProductsService {
     })
   }
 
+  // Obtener un producto por ID.
   async getById(id) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const err = new Error(CONST.BAD_ID)
+      err.statusCode = 400
+      err.details = { providedId: id, message: CONST.BAD_ID }
+      throw err
+    }
     const product = await this.productsRepo.getById(id)
     if (!product) {
       const err = new Error(CONST.PRODUCT_NOT_FOUND)
+      err.statusCode = 404
       err.details = { searchedProduct: id, message: CONST.PRODUCT_NOT_FOUND }
       throw err
     }

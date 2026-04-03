@@ -16,7 +16,7 @@ class ProductsController {
     }
   }
 
-  // Obtener producto por ID.
+  // Obtener un producto por ID.
   getById = async (req, res, next) => {
     try {
       const { id } = req.params
