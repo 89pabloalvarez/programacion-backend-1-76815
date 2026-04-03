@@ -6,8 +6,8 @@ class ProductsRepository {
   }
 
   // Obtener todos los productos.
-  async getAll(params) {
-    return await this.model.paginate(/* ... */)
+  async getAll(filter = {}, options = {}) {
+    return await this.model.paginate(filter, options)
   }
 
   // Obtener un producto por ID.

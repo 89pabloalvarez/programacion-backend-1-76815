@@ -3,16 +3,24 @@ import { validateFields } from '../common/functions.js'
 import { productsRepository } from '../repositories/products.js'
 
 class ProductsService {
-  constructor(repo) {
-    this.repo = repo
+  constructor(productsRepo) {
+    this.productsRepo = productsRepo
   }
 
-  async getAll(params) {
-    return await this.repo.getAll(params)
+  async getAll({ limit = 10, page = 1, sort, query }) {
+    const filter = query ? { category: query } : {}
+    const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
+
+    return await this.productsRepo.getAll(filter, {
+      page,
+      limit,
+      sort: sortOption,
+      lean: true
+    })
   }
 
   async getById(id) {
-    const product = await this.repo.getById(id)
+    const product = await this.productsRepo.getById(id)
     if (!product) {
       const err = new Error(CONST.PRODUCT_NOT_FOUND)
       err.details = { searchedProduct: id, message: CONST.PRODUCT_NOT_FOUND }
@@ -32,7 +40,7 @@ class ProductsService {
       throw new Error('Validación fallida: ' + JSON.stringify(isBodyValid))
     }
 
-    return await this.repo.create(body)
+    return await this.productsRepo.create(body)
   }
 
   async update(id, data) {
@@ -46,11 +54,11 @@ class ProductsService {
       throw new Error('Validación fallida: ' + JSON.stringify(isBodyValid))
     }
 
-    return await this.repo.update(id, data)
+    return await this.productsRepo.update(id, data)
   }
 
   async delete(id) {
-    const product = await this.repo.delete(id)
+    const product = await this.productsRepo.delete(id)
     if (!product) {
       const err = new Error(CONST.PRODUCT_NOT_FOUND)
       err.details = { searchedProduct: id, message: CONST.PRODUCT_NOT_FOUND }
