@@ -6,6 +6,8 @@ export const CONSTANTS = {
     DIR_URL_CARTS: '/carts',
     PRODUCT_NOT_FOUND: 'Producto no encontrado.',
     PURCHASE_NOT_FOUND: 'Compra no encontrada.',
+    BAD_ID: 'El ID no tiene formato válido.',
+    SERVER_ERROR: 'Error interno del servidor.',
     PRODUCT_CREATE_ALLOWED_FIELDS: [
         "title",
         "price",
