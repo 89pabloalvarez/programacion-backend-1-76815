@@ -21,6 +21,14 @@ class ProductsService {
     })
   }
 
+  // Obtener todos los productos SIN PAGINACIÓN.
+  async getAllWithoutPagination({ sort, query } = {}) {
+    const filter = query ? { category: query } : {}
+    const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
+
+    return await this.productsRepo.getAllWithoutPagination(filter, { sort: sortOption })
+  }
+
   // Obtener un producto por ID.
   async getById(id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {

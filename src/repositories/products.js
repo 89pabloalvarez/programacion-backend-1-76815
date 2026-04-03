@@ -9,6 +9,10 @@ class ProductsRepository {
   async getAll(filter = {}, options = {}) {
     return await this.model.paginate(filter, options)
   }
+  // Obtener todos los productos SIN PAGINACIÓN.
+  async getAllWithoutPagination(filter = {}, options = {}) {
+    return await this.model.find(filter, null, options).lean()
+  }
 
   // Obtener un producto por ID.
   async getById(id) {
