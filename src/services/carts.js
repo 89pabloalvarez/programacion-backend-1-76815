@@ -53,7 +53,6 @@ class CartsService {
     const errors = []
 
     for (const item of body) {
-      // 1. Validar campos permitidos y tipos
       const validationResult = this.validateCartItem(item)
       if (validationResult.error) {
         errors.push({ item, message: validationResult.error })
@@ -70,14 +69,12 @@ class CartsService {
         continue
       }
 
-      // 3. Verificar existencia del producto
       const product = await this.productsRepo.getById(item.productId)
       if (!product) {
         errors.push({ item, message: `Producto con id ${item.productId} no encontrado.` })
         continue
       }
 
-      // 4. Construir o acumular producto en el carrito
       this.addOrUpdateCartProduct(productsMap, product, item.quantity)
     }
 
