@@ -6,7 +6,7 @@ const router = Router()
 // Obtener todos los carritos.
 router.get('/', cartsController.getAll)
 
-// Obtener productos de un carrito por ID.
+// Obtener un carrito por ID.
 router.get('/:id', cartsController.getById)
 
 // Crear un carrito.

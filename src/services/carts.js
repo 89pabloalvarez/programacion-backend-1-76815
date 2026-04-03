@@ -3,6 +3,7 @@ import { validateFields } from '../common/functions.js'
 import { cartsRepository } from '../repositories/carts.js'
 import { productsRepository } from '../repositories/products.js'
 import { CartModel } from '../models/cart.js'
+import mongoose from 'mongoose'
 
 class CartsService {
   constructor(cartsRepo, productsRepo) {
@@ -10,6 +11,7 @@ class CartsService {
     this.productsRepo = productsRepo
   }
 
+  // Obtener todos los carritos.
   async getAll({ limit = 10, page = 1, sort, query }) {
     const filter = query ? { category: query } : {}
     const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
@@ -21,6 +23,24 @@ class CartsService {
       lean: true
     })
   }
+
+  // Obtener un carrito por ID.
+  async getById(id) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const err = new Error(CONST.BAD_ID)
+      err.statusCode = 400
+      err.details = { providedId: id, message: CONST.BAD_ID }
+      throw err
+    }
+    const cart = await this.cartsRepo.getById(id)
+    if (!cart) {
+      const err = new Error(CONST.PURCHASE_NOT_FOUND)
+      err.statusCode = 404
+      err.details = { searchedCart: id, message: CONST.PURCHASE_NOT_FOUND }
+      throw err
+    }
+    return cart
+    }
 
   async create(body) {
     if (!Array.isArray(body)) {
@@ -129,26 +149,6 @@ class CartsService {
       success: true,
       message: "Carrito creado satisfactoriamente.",
       cart: createdCart
-    }
-  }
-
-  async getById(id) {
-    const cart = await this.cartsRepo.getById(id)
-
-    if (!cart) {
-      const err = new Error(CONST.PURCHASE_NOT_FOUND)
-      err.details = {
-        success: false,
-        searchedCart: id,
-        message: CONST.PURCHASE_NOT_FOUND
-      }
-      throw err
-    }
-
-    return {
-      success: true,
-      message: `Productos del carrito ${id}`,
-      products: cart.products.map(p => p.product)
     }
   }
 

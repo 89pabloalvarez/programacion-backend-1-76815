@@ -10,7 +10,7 @@ class CartsRepository {
     return await this.model.paginate(filter, options)
   }
 
-  // Obtener carrito por ID.
+  // Obtener un carrito por ID.
   async getById(id) {
     return await this.model.findById(id)
   }

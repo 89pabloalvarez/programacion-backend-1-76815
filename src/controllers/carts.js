@@ -5,7 +5,7 @@ class CartsController {
     this.service = service
   }
 
-  // Obtener todos los carritos
+  // Obtener todos los carritos.
   getAll = async (req, res, next) => {
     try {
       const { limit, page, sort, query } = req.query
@@ -16,7 +16,7 @@ class CartsController {
     }
   }
 
-  // Obtener carrito por ID
+  // Obtener un carrito por ID.
   getById = async (req, res, next) => {
     try {
       const { id } = req.params
