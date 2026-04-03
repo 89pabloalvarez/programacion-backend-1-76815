@@ -27,7 +27,7 @@ class ProductsController {
     }
   }
 
-  // Crear producto.
+  // Crea un nuevo producto.
   create = async (req, res, next) => {
     try {
       const response = await this.service.create(req.body)

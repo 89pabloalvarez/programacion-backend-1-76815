@@ -55,7 +55,10 @@ class ProductsService {
     )
 
     if (!isBodyValid.objectValid) {
-      throw new Error('Validación fallida: ' + JSON.stringify(isBodyValid))
+      const err = new Error('Validación fallida')
+      err.statusCode = 400
+      err.details = isBodyValid
+      throw err
     }
 
     return await this.productsRepo.create(body)
