@@ -2,11 +2,24 @@ import { CONSTANTS as CONST } from '../common/constants.js'
 import { validateFields } from '../common/functions.js'
 import { cartsRepository } from '../repositories/carts.js'
 import { productsRepository } from '../repositories/products.js'
+import { CartModel } from '../models/cart.js'
 
 class CartsService {
   constructor(cartsRepo, productsRepo) {
     this.cartsRepo = cartsRepo
     this.productsRepo = productsRepo
+  }
+
+  async getAll({ limit = 10, page = 1, sort, query }) {
+    const filter = query ? { category: query } : {}
+    const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
+
+    return await this.cartsRepo.getAll(filter, {
+      page,
+      limit,
+      sort: sortOption,
+      lean: true
+    })
   }
 
   async create(body) {
@@ -102,11 +115,13 @@ class CartsService {
 
     const createdCart = await this.cartsRepo.create(newCart)
 
+
     if (extraFieldsMessages.length > 0) {
+      const populatedCart = await CartModel.findById(createdCart._id)
       return {
         success: true,
         message: "Carrito creado satisfactoriamente. " + extraFieldsMessages.join(" "),
-        cart: createdCart
+        cart: populatedCart
       }
     }
 

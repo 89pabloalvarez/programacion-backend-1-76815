@@ -8,7 +8,8 @@ class CartsController {
   // Obtener todos los carritos
   getAll = async (req, res, next) => {
     try {
-      const response = await this.service.getAll()
+      const { limit, page, sort, query } = req.query
+      const response = await this.service.getAll({ limit, page, sort, query })
       res.json(response)
     } catch (error) {
       next(error)

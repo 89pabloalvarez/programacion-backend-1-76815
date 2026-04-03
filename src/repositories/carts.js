@@ -6,8 +6,8 @@ class CartsRepository {
   }
 
   // Obtener todos los carritos.
-  async getAll({ limit = 10, page = 1 } = {}) {
-    return await this.model.paginate({}, { limit, page })
+  async getAll(filter = {}, options = {}) {
+    return await this.model.paginate(filter, options)
   }
 
   // Obtener carrito por ID.
