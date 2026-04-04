@@ -14,7 +14,7 @@ export const errorHandler = (err, req, res, next) => {
   if (err.name === 'CastError') {
     err.statusCode = 400
     err.details = {
-      field: err.path === '_id' ? 'productId' : err.path,
+      field: err.path === '_id' ? 'id' : err.path,
       value: err.value,
       message: CONST.BAD_ID
     }
