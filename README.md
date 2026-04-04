@@ -1,5 +1,19 @@
 # Proyecto Backend 1 - comisión 76815 - Products & Carts API
 
+# ¡¡SETUP!!
+
+Se precisa crear el archivo ".env" con los siguientes datos dentro:
+
+MONGO_USER=89pabloalvarez_db_user
+MONGO_PASS=LEvq3tl9dDKeiXNM
+MONGO_CLUSTER=mth3zdu.mongodb.net
+MONGO_DB_NAME=db
+
+(claramente es información sensible que no se publica! pero a fines prácticos de una entrega de un trabajo práctico, para un curso, se me puede permitir la inseguridad de este README; ".env" esta dentro del gitignore, seria peor sacarlo de ahi y subir directamente el .env a github)
+
+## Entrega final:
+
+
 ## Segunda entrega:
 En la segunda entrega agrego a la version de la primer entrega el manejo de handlebars y de websocket, se agrega la configuración necesaria a la ya existente configuración de express.  
 Se cumple con las consignas de crear las rutas de "/" y "/realtimeproducts" para las vistas HTML de handlebars y de websockets para las actualizaciones en tiempo real para la interfaz del usuario. 
