@@ -11,7 +11,10 @@ app.use(loggerRequest)
 app.use(loggerResponse)
 
 app.engine('handlebars', handlebars.engine({
-    partialsDir: 'src/views/partials'
+    partialsDir: 'src/views/partials',
+    helpers: {
+        eq: (a, b) => a === b
+    }
 }))
 app.set('views', 'src/views')
 app.set('view engine', 'handlebars')

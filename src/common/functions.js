@@ -67,19 +67,6 @@ export function validateFields(objeto, allowedFields, schemaFields) {
     return result
 }
 
-export const unEscapedJson = (escapedJson) => {
-  try {
-    if (typeof escapedJson !== 'string') {
-      throw new Error('El parámetro debe ser un String')
-    }
-    const parsed = JSON.parse(escapedJson)
-    return parsed
-  } catch (error) {
-    console.error('Error al des-escapar JSON:', error.message)
-    return null
-  }
-}
-
 export function validateCartItem(item) {
   const result = validateFields(item, CONST.CART_CREATE_ALLOWED_FIELDS, CONST.CART_FIELDS_SCHEMA)
 

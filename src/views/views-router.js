@@ -3,22 +3,52 @@ import { productsService } from '../services/products.js'
 
 const router = Router()
 
-router.get("/", async (req, res) => {
-  let products = await productsService.getAllWithoutPagination({})
-  // const products = await productsService.getAll({}) En el caso de usar paginación se descomenta ésta linea y la 12 y listooo!!
-  // Devolveríííía los 10 primeros, pero como la parte de la view en websocket no manejo paginado, que quede como estaba originalmente. en la entrega 2. (ésto no se evalúa en la entrega final)
-  res.render('pages/home', { 
-    page_title: 'Inicio',
-    products: products.map(p => ({
+router.get('/', async (req, res, next) => {
+  try {
+    let { page = 1, limit = 10, sort = '' } = req.query
+ 
+    page  = parseInt(page)
+    limit = parseInt(limit)
+
+    if (isNaN(page)  || page  < 1) page  = 1
+    if (isNaN(limit) || limit < 1) limit = 10
+    if (limit > 100) limit = 100 // Meto ésta validacion para que nadie se vaya a la goma con el límite, ya es hilar muuuuy fino pero puede pasar!
+    if (sort !== 'asc' && sort !== 'desc') sort = ''
+
+    const result = await productsService.getAll({ page, limit, sort })
+ 
+    if (page > result.totalPages && result.totalPages > 0) {
+      return res.redirect(`/?page=${result.totalPages}&limit=${limit}&sort=${sort}`)
+    }
+ 
+    const products = (result.docs || []).map(p => ({
       ...p,
       status: p.status ? 'Si' : 'No'
     }))
-    // products: products.docs
-  })
+ 
+    res.render('pages/home', {
+      page_title: 'Inicio',
+      products,
+      pagination: {
+        page:        result.page,
+        totalPages:  result.totalPages,
+        totalDocs:   result.totalDocs,
+        limit:       result.limit,
+        hasPrevPage: result.hasPrevPage,
+        hasNextPage: result.hasNextPage,
+        prevPage:    result.prevPage,
+        nextPage:    result.nextPage,
+        isEmpty:     products.length === 0,
+        sort
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
 })
-
+ 
 router.get('/realtimeproducts', (req, res) => {
-    res.render('pages/realTimeProducts', { page_title: 'Productos en Tiempo Real' })
+  res.render('pages/realTimeProducts', { page_title: 'Productos en Tiempo Real' })
 })
 
 export default router
