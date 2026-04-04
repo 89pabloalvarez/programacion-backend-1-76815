@@ -1,103 +1,104 @@
-const socket = io()
-const createForm = document.getElementById('productCreate')
-const title = document.getElementById('title')
-const description = document.getElementById('description')
-const price = document.getElementById('price')
-const stock = document.getElementById('stock')
-const category = document.getElementById('category')
+const socket      = io()
+const createForm  = document.getElementById('productCreate')
 const productsDiv = document.getElementById('products')
+const prevBtn     = document.getElementById('prevBtn')
+const nextBtn     = document.getElementById('nextBtn')
+const pageInput   = document.getElementById('pageInput')
+const pageTotalSpan = document.getElementById('pageTotalSpan')
+const paginationInfo = document.getElementById('paginationInfo')
+const pageJumpForm  = document.getElementById('pageJumpForm')
+const limitSelect   = document.getElementById('limitSelect')
 
-socket.on('updateProducts', (products) => {
-  const { docs, totalPages, page } = products
+let currentPage  = 1
+let currentLimit = 10
 
-  if (docs.length === 0) {
-    productsDiv.innerHTML = `<p class='placeholder'>No hay productos cargados todavía...</p>`
+function requestProducts(page, limit) {
+  socket.emit('getProducts', { page, limit })
+}
+
+socket.on('updateProducts', (result) => {
+  const { docs, totalPages, page, totalDocs, limit } = result
+
+  currentPage  = page
+  currentLimit = limit
+
+  paginationInfo.innerHTML =
+    `Mostrando página <strong>${page}</strong> de <strong>${totalPages}</strong> (${totalDocs} productos en total)`
+
+  pageInput.value = page
+  pageInput.max = totalPages
+  pageTotalSpan.textContent = `/ ${totalPages}`
+
+  prevBtn.disabled = page <= 1
+  nextBtn.disabled = page >= totalPages
+
+  if (!docs || docs.length === 0) {
+    productsDiv.innerHTML = `<p class='placeholder'>No hay productos en esta página.</p>`
     return
   }
 
   productsDiv.innerHTML = docs.map(p => `
     <div class='product-item'>
       <div>
-        <strong>${p.title}</strong> - ${p.description} <br>
-        Precio: $${p.price} <br>
-        Stock: ${p.stock} <br>
-        Categoría: ${p.category}
+        <strong>${p.title}</strong> — ${p.description}<br>
+        Precio: $${p.price} &nbsp;|&nbsp; Stock: ${p.stock} &nbsp;|&nbsp; Categoría: ${p.category}
       </div>
-      <button class='delete-btn' product-id='${p._id}'>Eliminar</button>
+      <button class='delete-btn' data-id='${p._id}'>Eliminar</button>
     </div>
   `).join('')
 
-  const pageButtonsDiv = document.getElementById('page-buttons')
-  pageButtonsDiv.innerHTML = ''
-
-  // Botón "Anterior"
-  if (page > 1) {
-    const prevBtn = document.createElement('button')
-    prevBtn.textContent = 'Anterior'
-    prevBtn.addEventListener('click', () => {
-      const limit = document.getElementById('limit').value
-      socket.emit('getProducts', { page: page - 1, limit: parseInt(limit) })
-    })
-    pageButtonsDiv.appendChild(prevBtn)
-  }
-
-  // Botones numéricos
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button')
-    btn.textContent = i
-    if (i === page) btn.disabled = true
-    btn.addEventListener('click', () => {
-      const limit = document.getElementById('limit').value
-      socket.emit('getProducts', { page: i, limit: parseInt(limit) })
-    })
-    pageButtonsDiv.appendChild(btn)
-  }
-
-  // Botón "Siguiente"
-  if (page < totalPages) {
-    const nextBtn = document.createElement('button')
-    nextBtn.textContent = 'Siguiente'
-    nextBtn.addEventListener('click', () => {
-      const limit = document.getElementById('limit').value
-      socket.emit('getProducts', { page: page + 1, limit: parseInt(limit) })
-    })
-    pageButtonsDiv.appendChild(nextBtn)
-  }
-
-  // Botones eliminar
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const productToDelete = btn.getAttribute('product-id')
-      socket.emit('deleteProduct', productToDelete)
+      socket.emit('deleteProduct', btn.dataset.id)
     })
   })
-
-})
-
-// Listener para cambio de límite
-document.getElementById('limit').addEventListener('change', e => {
-  socket.emit('getProducts', { page: 1, limit: parseInt(e.target.value) })
-})
-
-createForm.addEventListener('submit', e => {
-  e.preventDefault()
-  const priceValue = parseFloat(price.value.replace(',', '.'))
-  const thumbnailsArray = thumbnails.value
-    .split('\n')
-    .map(url => url.trim())
-    .filter(url => url.length > 0)
-  const product = {
-    title: title.value,
-    description: description.value,
-    price: priceValue,
-    stock: parseInt(stock.value),
-    category: category.value,
-    thumbnails: thumbnailsArray
-  }
-  socket.emit('addProduct', product)
-  createForm.reset()
 })
 
 socket.on('error', err => {
   console.error('Error desde servidor:', err)
+  alert('Error: ' + (err.message || JSON.stringify(err)))
+})
+
+prevBtn.addEventListener('click', () => {
+  if (currentPage > 1) requestProducts(currentPage - 1, currentLimit)
+})
+
+nextBtn.addEventListener('click', () => {
+  requestProducts(currentPage + 1, currentLimit)
+})
+
+pageJumpForm.addEventListener('submit', e => {
+  e.preventDefault()
+  const val     = parseInt(pageInput.value)
+  const maxPage = parseInt(pageInput.max) || 1
+  if (isNaN(val) || val < 1 || val > maxPage) {
+    alert(`Número de página inválido. Ingresá un valor entre 1 y ${maxPage}.`)
+    pageInput.value = currentPage
+    return
+  }
+  requestProducts(val, currentLimit)
+})
+
+limitSelect.addEventListener('change', e => {
+  currentLimit = parseInt(e.target.value)
+  requestProducts(1, currentLimit)
+})
+
+createForm.addEventListener('submit', e => {
+  e.preventDefault()
+  const thumbnailsArray = document.getElementById('thumbnails').value
+    .split('\n')
+    .map(url => url.trim())
+    .filter(url => url.length > 0)
+
+  const product = {
+    title:       document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    price:       parseFloat(document.getElementById('price').value.replace(',', '.')),
+    stock:       parseInt(document.getElementById('stock').value),
+    category:    document.getElementById('category').value,
+    thumbnails:  thumbnailsArray
+  }
+  socket.emit('addProduct', product)
+  createForm.reset()
 })
