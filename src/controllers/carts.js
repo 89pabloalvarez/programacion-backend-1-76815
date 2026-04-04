@@ -37,11 +37,11 @@ class CartsController {
     }
   }
 
-  // Agregar producto a carrito
+  // Agregar producto a carrito.
   addProduct = async (req, res, next) => {
     try {
       const { cid, pid } = req.params
-      const { quantity } = req.body
+      const quantity = req.body?.quantity
 
       const response = await this.service.addProduct(cid, pid, quantity)
       res.json(response)

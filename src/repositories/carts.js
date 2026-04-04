@@ -20,7 +20,7 @@ class CartsRepository {
     return await this.model.create(cartData)
   }
 
-  // Actualizar carrito.
+  // Agregar producto al carrito.
   async update(id, cartData) {
     return await this.model.findByIdAndUpdate(id, cartData, {
       new: true

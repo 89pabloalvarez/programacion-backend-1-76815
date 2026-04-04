@@ -1,5 +1,5 @@
 import { CONSTANTS as CONST } from '../common/constants.js'
-import { validateFields } from '../common/functions.js'
+import { validateCartItem, validateQuantity, addOrUpdateCartProduct } from '../common/functions.js'
 import { cartsRepository } from '../repositories/carts.js'
 import { productsRepository } from '../repositories/products.js'
 import { CartModel } from '../models/cart.js'
@@ -45,7 +45,9 @@ class CartsService {
   // Crea un nuevo carrito.
   async create(body) {
     if (!Array.isArray(body)) {
-      return { success: false, message: "El body debe ser un array de productos." }
+      const err = new Error(CONST.PRODUCT_CREATE_MUST_BE_ARRAY)
+      err.statusCode = 400
+      throw err
     }
 
     const productsMap = {}
@@ -53,7 +55,7 @@ class CartsService {
     const errors = []
 
     for (const item of body) {
-      const validationResult = this.validateCartItem(item)
+      const validationResult = validateCartItem(item)
       if (validationResult.error) {
         errors.push({ item, message: validationResult.error })
         continue
@@ -62,8 +64,7 @@ class CartsService {
         extraFieldsMessages.push(validationResult.extraFieldsMsg)
       }
 
-      // 2. Validar cantidad
-      const quantityError = this.validateQuantity(item)
+      const quantityError = validateQuantity(item)
       if (quantityError) {
         errors.push({ item, message: quantityError })
         continue
@@ -75,11 +76,14 @@ class CartsService {
         continue
       }
 
-      this.addOrUpdateCartProduct(productsMap, product, item.quantity)
+      addOrUpdateCartProduct(productsMap, product, item.quantity)
     }
 
     if (errors.length > 0) {
-      return { success: false, message: "Errores en la creación del carrito.", errors }
+      const err = new Error("Errores en la creación del carrito.")
+      err.statusCode = 400
+      err.details = errors
+      throw err
     }
 
     const newCart = { products: Object.values(productsMap) }
@@ -97,39 +101,41 @@ class CartsService {
     return { success: true, message: "Carrito creado satisfactoriamente.", cart: createdCart }
   }
 
+  // Agregar producto al carrito.
   async addProduct(cid, pid, quantity) {
-    if (!Number.isInteger(quantity) || quantity <= 0) {
-      return {
-        success: false,
-        message: `Cantidad inválida para el producto ${pid}.`
-      }
-    }
-
-    const product = await this.productsRepo.getById(pid)
-
-    if (!product) {
-      return {
-        success: false,
-        message: `Producto con id ${pid} no encontrado.`
-      }
-    }
-
-    const cart = await this.cartsRepo.getById(cid)
-
-    if (!cart) {
-      const err = new Error(CONST.PURCHASE_NOT_FOUND)
-      err.details = {
-        success: false,
-        searchedCart: cid,
-        message: CONST.PURCHASE_NOT_FOUND
-      }
+    if (quantity === undefined) {
+      const err = new Error(CONST.REQUEST_NOT_COMPLETE)
+      err.statusCode = 400
+      err.details = { body: "No definido", message: CONST.QUANTITY_NOT_DEFINED }
       throw err
     }
 
-    const existingProduct = cart.products.find(
-      p => p.product.toString() === pid
-    )
+    const quantityError = validateQuantity({ productId: pid, quantity })
+    if (quantityError) {
+      const err = new Error(CONST.QUANTITY_INVALID_VALUE)
+      err.statusCode = 400
+      err.details = { quantity, message: quantityError }
+      throw err
+    }
 
+    if (!mongoose.Types.ObjectId.isValid(pid)) {
+      const err = new Error(CONST.BAD_ID)
+      err.statusCode = 400
+      err.details = { productId: pid, message: CONST.BAD_ID }
+      throw err
+    }
+
+    const product = await this.productsRepo.getById(pid)
+    if (!product) {
+      const err = new Error(CONST.PRODUCT_NOT_FOUND)
+      err.statusCode = 404
+      err.details = { searchedProduct: pid, message: CONST.PRODUCT_NOT_FOUND }
+      throw err
+    }
+
+    const cart = await this.getById(cid)
+
+    const existingProduct = cart.products.find(p => p.product.toString() === pid)
     if (existingProduct) {
       existingProduct.quantity += quantity
     } else {
@@ -141,58 +147,9 @@ class CartsService {
       })
     }
 
-    return await this.cartsRepo.update(cid, cart)
+    const updatedCart = await this.cartsRepo.update(cid, cart)
+    return { success: true, message: "Carrito actualizado correctamente.", cart: updatedCart }
   }
-
-  ////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////FUNCIONES AUXILIARES////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////
-
-  validateCartItem(item) {
-    const result = validateFields(item, CONST.CART_CREATE_ALLOWED_FIELDS, CONST.CART_FIELDS_SCHEMA)
-
-    if (!result.objectValid) {
-      let msg = ''
-      if (result.fieldsMissing.length > 0) {
-        msg += `Faltan campos: ${result.fieldsMissing.map(f => `'${f}'`).join(", ")}. `
-      }
-      if (result.fieldsTypeError.length > 0) {
-        msg += `Campos con tipo incorrecto: ${result.fieldsTypeError.map(f => `'${f}'`).join(", ")}.`
-      }
-      return { error: msg.trim() }
-    }
-
-    if (result.fieldsInvalid.length > 0) {
-      const msg = result.fieldsInvalid.length === 1
-        ? `El campo '${result.fieldsInvalid[0]}' estaba de más para el productoId '${item.productId}'.`
-        : `Los campos ${result.fieldsInvalid.map(f => `'${f}'`).join(", ")} estaban de más para el productoId '${item.productId}'.`
-      return { extraFieldsMsg: msg }
-    }
-
-    return {}
-  }
-
-  validateQuantity(item) {
-    const { productId, quantity } = item
-    if (!Number.isInteger(quantity) || quantity <= 0) {
-      return `Cantidad inválida para el producto ${productId}. Debe ser un entero mayor a 0.`
-    }
-    return null
-  }
-
-  addOrUpdateCartProduct(productsMap, product, quantity) {
-    if (!productsMap[product._id]) {
-      productsMap[product._id] = {
-        product: product._id,
-        title: product.title,
-        price: product.price,
-        quantity
-      }
-    } else {
-      productsMap[product._id].quantity += quantity
-    }
-  }
-
 }
 
 export const cartsService = new CartsService(

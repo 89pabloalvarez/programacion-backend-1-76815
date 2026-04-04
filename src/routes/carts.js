@@ -13,6 +13,6 @@ router.get('/:id', cartsController.getById)
 router.post('/', cartsController.create)
 
 // Agregar producto al carrito.
-router.post('/:cid/product/:pid', cartsController.addProduct)
+router.put('/:cid/product/:pid', cartsController.addProduct)
 
 export default router
