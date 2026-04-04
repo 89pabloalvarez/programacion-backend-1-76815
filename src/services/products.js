@@ -21,14 +21,6 @@ class ProductsService {
     })
   }
 
-  // Obtener todos los productos SIN PAGINACIÓN.
-  async getAllWithoutPagination({ sort, query } = {}) {
-    const filter = query ? { category: query } : {}
-    const sortOption = sort ? { price: sort === 'asc' ? 1 : -1 } : {}
-
-    return await this.productsRepo.getAllWithoutPagination(filter, { sort: sortOption })
-  }
-
   // Obtener un producto por ID.
   async getById(id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -65,7 +57,16 @@ class ProductsService {
     return await this.productsRepo.create(body)
   }
 
+  // Actualiza un producto.
   async update(id, data) {
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const err = new Error(CONST.BAD_ID)
+      err.statusCode = 400
+      err.details = { providedId: id, message: CONST.BAD_ID }
+      throw err
+    }
+
     const isBodyValid = validateFields(
       data,
       CONST.PRODUCT_EDIT_ALLOWED_FIELDS,
@@ -82,6 +83,7 @@ class ProductsService {
     return await this.productsRepo.update(id, data)
   }
 
+  // Eliminar un producto.
   async delete(id) {
     const product = await this.productsRepo.delete(id)
     if (!product) {

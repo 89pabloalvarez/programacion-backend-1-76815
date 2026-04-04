@@ -1,5 +1,3 @@
-import { unEscapedJson } from '../common/functions.js'
-
 const ahora = () => {
   const fecha = new Date();
   const fechaCompleta = fecha.toLocaleDateString('es-AR', {
@@ -22,7 +20,11 @@ export const loggerRequest = (req, res, next) => {
         Método: ${req.method} -
         Path: '${req.url}' -
         Headers: ${JSON.stringify(req.headers)} -
-        Body: ${JSON.stringify(req.body)} -
+        Body: ${
+          typeof req.body === 'object'
+            ? JSON.stringify(req.body, null, 2)
+            : req.body
+        } -
         Fecha: '${ahora()}'
     `)
     next()
@@ -36,7 +38,11 @@ export const loggerResponse = (req, res, next) => {
         Método: ${req.method} -
         Path: '${req.url}' -
         Status: ${res.statusCode} -
-        Body: ${unEscapedJson(JSON.stringify(body))} -
+        Body: ${
+          typeof body === 'object'
+            ? JSON.stringify(body, null, 2)
+            : body
+        } -
         Fecha: '${ahora()}'
     `)
     return originalSend.call(this, body)
