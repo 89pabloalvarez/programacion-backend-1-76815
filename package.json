@@ -1,6 +1,6 @@
 {
   "name": "backend1",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Repositorio creado para presentar las entregas de la comisión: #76815-programación-backend-1\r first-commit-test",
   "main": "src/server.js",
   "type": "module",
@@ -12,18 +12,20 @@
     "url": "git+https://github.com/89pabloalvarez/programacion-backend-1-76815.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pablo Alvarez",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/89pabloalvarez/programacion-backend-1-76815/issues"
   },
   "homepage": "https://github.com/89pabloalvarez/programacion-backend-1-76815#readme",
   "dependencies": {
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.6",
+    "mongodb": "^7.1.0",
     "mongoose": "^9.3.0",
+    "mongoose-paginate-v2": "^1.9.4",
     "multer": "^2.0.2",
-    "socket.io": "^4.8.3",
-    "uuid": "^13.0.0"
+    "socket.io": "^4.8.3"
   }
 }

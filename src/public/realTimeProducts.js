@@ -2,7 +2,6 @@ const socket = io()
 const createForm = document.getElementById('productCreate')
 const title = document.getElementById('title')
 const description = document.getElementById('description')
-const code = document.getElementById('code')
 const price = document.getElementById('price')
 const stock = document.getElementById('stock')
 const category = document.getElementById('category')
@@ -23,7 +22,7 @@ socket.on('updateProducts', (products) => {
         Stock: ${p.stock} <br>
         Categoría: ${p.category}
       </div>
-      <button class='delete-btn' product-id='${p.id}'>Eliminar</button>
+      <button class='delete-btn' product-id='${p._id}'>Eliminar</button>
     </div>
   `).join('')
 
