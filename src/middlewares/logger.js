@@ -1,4 +1,4 @@
-import { unEscapedJson } from '../utils/functions/functions.js'
+import { unEscapedJson } from '../common/functions.js'
 
 const ahora = () => {
   const fecha = new Date();
