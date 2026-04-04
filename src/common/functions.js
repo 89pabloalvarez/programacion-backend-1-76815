@@ -1,3 +1,5 @@
+import { CONSTANTS as CONST } from './constants.js'
+
 export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 export async function startupServer(BASEURL) {
@@ -75,5 +77,45 @@ export const unEscapedJson = (escapedJson) => {
   } catch (error) {
     console.error('Error al des-escapar JSON:', error.message)
     return null
+  }
+}
+
+export function validateCartItem(item) {
+  const result = validateFields(item, CONST.CART_CREATE_ALLOWED_FIELDS, CONST.CART_FIELDS_SCHEMA)
+
+  if (!result.objectValid) {
+    let msg = ''
+    if (result.fieldsMissing.length > 0) {
+      msg += `Faltan campos: ${result.fieldsMissing.map(f => `'${f}'`).join(", ")}. `
+    }
+    if (result.fieldsTypeError.length > 0) {
+      msg += `Campos con tipo incorrecto: ${result.fieldsTypeError.map(f => `'${f}'`).join(", ")}.`
+    }
+    return { error: msg.trim() }
+  }
+
+  if (result.fieldsInvalid.length > 0) {
+    const msg = result.fieldsInvalid.length === 1
+      ? `El campo '${result.fieldsInvalid[0]}' estaba de más para el productoId '${item.productId}'.`
+      : `Los campos ${result.fieldsInvalid.map(f => `'${f}'`).join(", ")} estaban de más para el productoId '${item.productId}'.`
+    return { extraFieldsMsg: msg }
+  }
+
+  return {}
+}
+
+export function validateQuantity(item) {
+  const { productId, quantity } = item
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    return `Cantidad inválida para el producto ${productId}. Debe ser un entero mayor a 0.`
+  }
+  return null
+}
+
+export function addOrUpdateCartProduct(productsMap, product, quantity) {
+  if (!productsMap[product._id]) {
+    productsMap[product._id] = { product: product._id, title: product.title, price: product.price, quantity }
+  } else {
+    productsMap[product._id].quantity += quantity
   }
 }
