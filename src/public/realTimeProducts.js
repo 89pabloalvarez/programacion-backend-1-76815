@@ -22,7 +22,7 @@ socket.on('updateProducts', (products) => {
         Stock: ${p.stock} <br>
         Categoría: ${p.category}
       </div>
-      <button class='delete-btn' product-id='${p.id}'>Eliminar</button>
+      <button class='delete-btn' product-id='${p._id}'>Eliminar</button>
     </div>
   `).join('')
 
