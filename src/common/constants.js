@@ -8,6 +8,10 @@ export const CONSTANTS = {
     PURCHASE_NOT_FOUND: 'Compra no encontrada.',
     BAD_ID: 'El ID no tiene formato válido.',
     SERVER_ERROR: 'Error interno del servidor.',
+    PRODUCT_CREATE_MUST_BE_ARRAY: 'El body debe ser un array.',
+    REQUEST_NOT_COMPLETE: 'Solicitud incompleta.',
+    QUANTITY_NOT_DEFINED: 'No se encontró el campo "quantity" en el cuerpo de la solicitud.',
+    QUANTITY_INVALID_VALUE: 'Cantidad no válida.',
     PRODUCT_CREATE_ALLOWED_FIELDS: [
         "title",
         "price",
