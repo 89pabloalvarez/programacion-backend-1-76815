@@ -101,7 +101,7 @@ export function validateQuantity(item) {
 
 export function addOrUpdateCartProduct(productsMap, product, quantity) {
   if (!productsMap[product._id]) {
-    productsMap[product._id] = { product: product._id, title: product.title, price: product.price, quantity }
+    productsMap[product._id] = { product: product._id, quantity }
   } else {
     productsMap[product._id].quantity += quantity
   }

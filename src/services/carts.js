@@ -141,8 +141,6 @@ class CartsService {
     } else {
       cart.products.push({
         product: pid,
-        title: product.title,
-        price: product.price,
         quantity
       })
     }

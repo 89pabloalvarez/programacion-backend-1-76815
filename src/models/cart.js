@@ -4,20 +4,12 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 const CartSchema = new Schema({
   products: [
     {
-      product: { 
+      product: {
         type: Schema.Types.ObjectId,
         ref: 'products',
         required: true
       },
-      title: { 
-        type: String,
-        required: true
-      },
-      price: { 
-        type: Number,
-        required: true
-      },
-      quantity: { 
+      quantity: {
         type: Number,
         required: true,
         default: 1
@@ -26,10 +18,25 @@ const CartSchema = new Schema({
   ]
 })
 
+// Populate automático en todas las queries de lectura
 CartSchema.pre('find', function () {
   this.populate({
     path: 'products.product',
-    select: 'title price' //Aca filtro solo el titulo y el precio, no me interesa el resto!!...
+    select: 'title price'
+  })
+})
+
+CartSchema.pre('findOne', function () {
+  this.populate({
+    path: 'products.product',
+    select: 'title price'
+  })
+})
+
+CartSchema.pre('findOneAndUpdate', function () {
+  this.populate({
+    path: 'products.product',
+    select: 'title price'
   })
 })
 
